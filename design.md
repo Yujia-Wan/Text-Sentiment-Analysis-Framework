@@ -37,9 +37,16 @@ Data plugins take client’s data source requests as input and output a JSONObje
 
 ## Plugin Interfaces
 - Data Plugins
-```
+    ```
+    public interface DataPlugin {
 
-```
+        public String getDataSource();
+
+        public JSONObject getData(Map<String, String> request);
+
+        public void onRegister(Framework framework);
+    }
+    ```
     - Twitter API
     ![TwitterPlugin](/resources/TwitterCodeSnippet.png)
 
@@ -61,7 +68,13 @@ Data plugins take client’s data source requests as input and output a JSONObje
       ![Test](/resources/Test.png)
 
 - Display Plugins
-```
-```
+    ```
+    public interface DisplayPlugin {
+
+        public JSONObject render(Map<String, String data>);
+
+        public void onRegister(Framework framework);
+    }
+    ```
     - [Plotly Open Source Graphing Libraries](https://plotly.com/graphing-libraries/)
     ![HeatMap](/resources/HeatMap.png)
