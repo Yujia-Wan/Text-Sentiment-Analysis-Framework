@@ -25,7 +25,7 @@ The framework should act as a controller. It provides a web-based user interface
 Data plugins take client’s data source requests as input and output a JSONObject with retrieved text fragments. More data plugins are supported but their output should be formatted as a JSON file. Display plugins take sentiment analysis results as input and output a JSON file using Plotly Graphing Libraries for frontend renderer to display visualized results. And more display plugins can be added to support different visualization needs. This framework is able to reuse existing visualizations when just providing a new data plugin and vice versa.
 
 ## Project Structure
-![model]()
+![model](/resources/Model.png)
 - Frontend
     - Use React and HTML.
 - Backend
@@ -40,6 +40,22 @@ Data plugins take client’s data source requests as input and output a JSONObje
     ![TwitterPlugin](/resources/TwitterCodeSnippet.png)
 
     - YouTube Data API
+      - Code snippet:
+      ![YouTubePlugin](/resources/YouTubeCodeSnippet.png)
+      - Key method:
+      
+        In CommentSnippet class:
+        
+        public String getTextDisplay()
+        
+        public DateTime getPublishedAt()
+
+        public CommonSnippet setParentId(String parentId)
+        
+        ![Document](/resources/Document.png)
+      - Sample test
+      ![Test](/resources/Test.png)
+
 
 - Display Plugins
     - [Plotly Open Source Graphing Libraries](https://plotly.com/graphing-libraries/)
