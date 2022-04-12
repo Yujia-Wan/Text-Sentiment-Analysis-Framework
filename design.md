@@ -59,4 +59,5 @@ Data plugins take client’s data source requests as input and output a JSONObje
 
 - Display Plugins
     - [Plotly Open Source Graphing Libraries](https://plotly.com/graphing-libraries/)
+    - [HeatMap](/resources/HeatMap.png)
 
