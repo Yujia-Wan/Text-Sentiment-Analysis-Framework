@@ -1,40 +1,33 @@
-
-# Milestone A:
+## Milestone A
 **Domain:**
 - Junyi Lu
 - Yujia Wang
 
-**Generality vs specificity:**
+**Generality vs Specificity:**
 - Junyi Lu
 - Yujia Wang
 
-**Project structure:**
+**Project Structure:**
 - Junyi Lu
 
-
-**Plugin interfaces:**
-
+**Plugin Interfaces:**
 - Twitter API:
   - Yujia Wang
-
-- YouTube DATA API:
+- YouTube Data API:
   - Junyi Lu
 
-
-# Milestone B:
+## Milestone B
 **Framework:**
 - Junyi Lu
 - Yujia Wang
 
-**Twitter plugin:**
+**Twitter Plugin:**
 - Yujia Wang
 
-**YouTube plugin:**
+**YouTube Plugin:**
 - Junyi Lu
 
-
-**Display plugin:**
-
+**Display Plugins:**
 - Pie chart:
   - Yujia Wang
 
