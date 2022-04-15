@@ -29,7 +29,7 @@ public class App extends NanoHTTPD {
     public App() throws IOException {
         super(PORT);
 
-        this.framework = new FrameworkImpl()();
+        this.framework = new FrameworkImpl();
         this.dataPlugins = loadDataPlugins();
         for (DataPlugin p: dataPlugins) {
             framework.registerDataPlugin(p);
@@ -43,20 +43,20 @@ public class App extends NanoHTTPD {
         System.out.println("Running!");
     }
 
-    @Override
-    public  Response serve(IHTTPSession session) {
-        String uri = session.getUri();
-        Map<String, String> params = session.getParms();
-        if (uri.equals("/dataplugin")) {
-
-        } else if (uri.equals()){
-
-        } else if (uri.equals()){
-
-        }
-
-        return newFixedLengthResponse();
-    }
+//    @Override
+//    public  Response serve(IHTTPSession session) {
+//        String uri = session.getUri();
+//        Map<String, String> params = session.getParms();
+////        if (uri.equals("/dataplugin")) {
+////
+////        } else if (uri.equals()){
+////
+////        } else if (uri.equals()){
+////
+////        }
+//
+//        return newFixedLengthResponse();
+//    }
 
     /**
      * Load data plugins listed in META-INF/services/...

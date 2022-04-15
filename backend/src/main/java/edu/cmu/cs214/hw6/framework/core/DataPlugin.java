@@ -1,4 +1,8 @@
 package edu.cmu.cs214.hw6.framework.core;
+import edu.cmu.cs214.hw6.dataPlugin.Data;
+import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * The data plug-in interface that plug-ins use to implement and register data
@@ -6,10 +10,7 @@ package edu.cmu.cs214.hw6.framework.core;
  */
 public interface DataPlugin {
 
-    /**
-     * Gets the name of the plug-in data source.
-     */
-    String getDataSourceName();
+    List<Data> getDataSource(JSONObject json);
 
     /**
      * Called (only once) when the plug-in is first registered with the
