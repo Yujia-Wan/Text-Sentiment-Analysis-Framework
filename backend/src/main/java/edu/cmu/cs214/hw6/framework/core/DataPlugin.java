@@ -9,7 +9,7 @@ public interface DataPlugin {
     /**
      * Gets the name of the plug-in data source.
      */
-    String getDataSourceName();
+    String getDataPluginName();
 
     /**
      * Called (only once) when the plug-in is first registered with the
