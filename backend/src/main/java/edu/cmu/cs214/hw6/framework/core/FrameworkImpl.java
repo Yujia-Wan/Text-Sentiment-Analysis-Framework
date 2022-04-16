@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 public class FrameworkImpl implements Framework {
     private DataPlugin currentDataPlugin;
+    private String dataPluginIndex;
     private DisplayPlugin currentDisplayPlugin;
     private List<DataPlugin> registeredDataPlugins;
     private List<DisplayPlugin> registeredDisplayPlugins;
@@ -25,6 +26,9 @@ public class FrameworkImpl implements Framework {
     public FrameworkImpl() {
         this.registeredDataPlugins = new ArrayList<>();
         this.registeredDisplayPlugins = new ArrayList<>();
+    }
+
+    public void process() {
     }
 
     /**
@@ -49,6 +53,9 @@ public class FrameworkImpl implements Framework {
 
     /**
      * Analyzes text message sentiment using Google Cloud Speech API.
+     * @param text Text to be analyzed.
+     * @return Sentiment analysis result.
+     * @throws IOException
      */
     public static Sentiment analyzeSentimentText(String text) throws IOException {
         // Authentication
@@ -73,37 +80,35 @@ public class FrameworkImpl implements Framework {
         }
     }
 
-    // Google's Natural Language API test
-//    public static void main(String... args) throws IOException {
-//        // Authentication
-//        CredentialsProvider credentialsProvider = FixedCredentialsProvider
-//                .create(ServiceAccountCredentials.fromStream(new FileInputStream("/Users/yujiawang/key/sentiment-analysis-347302-56034cc1688f.json")));
-//
-//        LanguageServiceSettings languageServiceSettings = LanguageServiceSettings.newBuilder()
-//                .setCredentialsProvider(credentialsProvider).build();
-//
-//        // Instantiates a client
-//        LanguageServiceClient languageServiceClient = LanguageServiceClient.create(languageServiceSettings);
-//
-//        // The text to analyze
-//        String[] texts = {"I love this!", "I hate this!"};
-//        for (String text : texts) {
-//            Document doc = Document.newBuilder().setContent(text).setType(Type.PLAIN_TEXT).build();
-//            // Detects the sentiment of the text
-//            Sentiment sentiment = languageServiceClient.analyzeSentiment(doc).getDocumentSentiment();
-//
-//            System.out.printf("Text: \"%s\"%n", text);
-//            System.out.printf(
-//                    "Sentiment: score = %s, magnitude = %s%n",
-//                    sentiment.getScore(), sentiment.getMagnitude());
-//        }
-//    }
-
     public List<String> getRegisteredDataPluginName() {
         return registeredDataPlugins.stream().map(DataPlugin::getDataPluginName).collect(Collectors.toList());
     }
 
     public List<String> getRegisteredDisplayPluginName() {
         return registeredDisplayPlugins.stream().map(DisplayPlugin::getDisplayPluginName).collect(Collectors.toList());
+    }
+
+    public void setCurrentDataPlugin(DataPlugin plugin) {
+        this.currentDataPlugin = plugin;
+    }
+
+    public void setDataPluginIndex(String index) {
+        this.dataPluginIndex = index;
+    }
+
+    public void setCurrentDisplayPlugin(DisplayPlugin plugin) {
+        this.currentDisplayPlugin = plugin;
+    }
+
+    public boolean hasDataPlugin() {
+        return this.currentDataPlugin != null;
+    }
+
+    public boolean hasDataPluginIndex() {
+        return this.dataPluginIndex != null;
+    }
+
+    public boolean hasDisplayPlugin() {
+        return this.currentDisplayPlugin != null;
     }
 }

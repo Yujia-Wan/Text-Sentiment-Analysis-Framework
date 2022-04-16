@@ -1,5 +1,7 @@
 package edu.cmu.cs214.hw6.framework.core;
 
+import java.util.List;
+
 /**
  * The data plug-in interface that plug-ins use to implement and register data
  * source with the {@link Framework}.
@@ -8,8 +10,12 @@ public interface DataPlugin {
 
     /**
      * Gets the name of the plug-in data source.
+     * @return Name of data plugin.
      */
     String getDataPluginName();
+
+    // Twitter plugin return xx tweets of given username, YouTube plugin return xx comments of given video url
+    List<String> getRetrievedData(String index);
 
     /**
      * Called (only once) when the plug-in is first registered with the
