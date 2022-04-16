@@ -1,18 +1,18 @@
 package edu.cmu.cs214.hw6.dataPlugin;
 
 public class Data {
-    private String commentText;
+    private String text;
     private String time;
     private double sentimentResult;
 
-    public Data(String commentText, String time, double sentimentResult) {
-        this.commentText = commentText;
+    public Data(String text, String time, double sentimentResult) {
+        this.text = text;
         this.time = time;
         this.sentimentResult = sentimentResult;
     }
 
-    public String getCommentText() {
-        return this.commentText;
+    public String getText() {
+        return this.text;
     }
 
     public String getTime() {
@@ -23,8 +23,8 @@ public class Data {
         return this.sentimentResult;
     }
 
-    public void setCommentText(String text) {
-        this.commentText = text;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public void setTime(String time) {
@@ -37,6 +37,6 @@ public class Data {
 
     @Override
     public String toString() {
-        return "comment text : " + this.commentText + "; time : " + this.time + " ; sentiment result : " + this.sentimentResult;
+        return "comment text : " + this.text + "; time : " + this.time + " ; sentiment result : " + this.sentimentResult;
     }
 }

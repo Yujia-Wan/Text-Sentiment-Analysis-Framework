@@ -3,6 +3,7 @@ package edu.cmu.cs214.hw6;
 import edu.cmu.cs214.hw6.framework.core.DataPlugin;
 import edu.cmu.cs214.hw6.framework.core.DisplayPlugin;
 import edu.cmu.cs214.hw6.framework.core.FrameworkImpl;
+import edu.cmu.cs214.hw6.framework.gui.FrameworkState;
 import fi.iki.elonen.NanoHTTPD;
 
 import java.io.IOException;
@@ -12,7 +13,6 @@ import java.util.Map;
 import java.util.ServiceLoader;
 
 public class App extends NanoHTTPD {
-    private static final int PORT = 8080;
 
     public static void main(String[] args) {
         try {
@@ -22,6 +22,7 @@ public class App extends NanoHTTPD {
         }
     }
 
+    private static final int PORT = 8080;
     private FrameworkImpl framework;
     private List<DataPlugin> dataPlugins;
     private List<DisplayPlugin> displayPlugins;
@@ -43,6 +44,7 @@ public class App extends NanoHTTPD {
         System.out.println("Running!");
     }
 
+<<<<<<< HEAD
 //    @Override
 //    public  Response serve(IHTTPSession session) {
 //        String uri = session.getUri();
@@ -57,6 +59,23 @@ public class App extends NanoHTTPD {
 //
 //        return newFixedLengthResponse();
 //    }
+=======
+    @Override
+    public  Response serve(IHTTPSession session) {
+        String uri = session.getUri();
+        Map<String, String> params = session.getParms();
+        // /generate?x=datapluginname&y=datapluginindex&z=displaypluginname
+        if (uri.equals("/generate")){
+            if (framework.hasDataPlugin() && framework.hasDataPluginIndex() && framework.hasDisplayPlugin()) {
+                framework.process();
+            }
+            return null;
+        }
+
+        FrameworkState frameworkState = FrameworkState.forFramework(this.framework);
+        return newFixedLengthResponse(frameworkState.toString());
+    }
+>>>>>>> main
 
     /**
      * Load data plugins listed in META-INF/services/...
@@ -67,7 +86,7 @@ public class App extends NanoHTTPD {
         ServiceLoader<DataPlugin> plugins = ServiceLoader.load(DataPlugin.class);
         List<DataPlugin> result = new ArrayList<>();
         for (DataPlugin p: plugins) {
-            System.out.println("Loaded data plugin ");
+            System.out.println("Loaded data plugin " + p.getDataPluginName());
             result.add(p);
         }
         return result;
@@ -82,7 +101,7 @@ public class App extends NanoHTTPD {
         ServiceLoader<DisplayPlugin> plugins = ServiceLoader.load(DisplayPlugin.class);
         List<DisplayPlugin> result = new ArrayList<>();
         for (DisplayPlugin p: plugins) {
-            System.out.println("Loaded display plugin ");
+            System.out.println("Loaded display plugin " + p.getDisplayPluginName());
             result.add(p);
         }
         return result;

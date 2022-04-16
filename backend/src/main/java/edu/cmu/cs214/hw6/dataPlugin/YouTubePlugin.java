@@ -21,9 +21,9 @@ import java.util.List;
  */
 public class YouTubePlugin implements DataPlugin {
     private static final String DEVELOPER_KEY = "AIzaSyBbI8osWXhhCKTsz4JPyRksWGraPj5LMMI";
-    private static final String APPLICATION_NAME = "YouTube DATA Plugin";
+    private static final String APPLICATION_NAME = "YouTube Data Plugin";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
-    private Framework f;
+    private Framework framework;
 
     /**
      * Build and return an authorized API client service.
@@ -38,13 +38,17 @@ public class YouTubePlugin implements DataPlugin {
                 .build();
     }
 
+    public String getDataPluginName() {
+
+    }
+
     /**
      * Execute API request. Get the latest 20 comments from a video.
      * @param json JSONObject from frontend.
      * @return list of comment data.
      */
     @Override
-    public List<Data> getDataSource(JSONObject json) {
+    public List<Data> getRetrievedData(JSONObject json) {
         String videoId = json.getString("dataSourceURL");
         List<Data> dataSource = new ArrayList<>();
         try {
@@ -58,9 +62,9 @@ public class YouTubePlugin implements DataPlugin {
             List<CommentThread> commentList = response.getItems();
             for (CommentThread comment : commentList){
                 CommentSnippet snippet = comment.getSnippet().getTopLevelComment().getSnippet();
-                String commentText = snippet.getTextOriginal();
+                String text = snippet.getTextOriginal();
                 String time = snippet.getPublishedAt().toString();
-                Data data = new Data(commentText, time, 0);
+                Data data = new Data(text, time, 0);
                 dataSource.add(data);
             }
         } catch (GeneralSecurityException | IOException exception) {
@@ -76,6 +80,6 @@ public class YouTubePlugin implements DataPlugin {
 
     @Override
     public void onRegister(Framework framework) {
-        this.f = framework;
+        this.framework = framework;
     }
 }

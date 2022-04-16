@@ -8,8 +8,9 @@ public interface DisplayPlugin {
 
     /**
      * Gets the name of the plug-in visualization.
+     * @return Name of diaplay plugin.
      */
-    String getDisplayName();
+    String getDisplayPluginName();
 
     /**
      * Called (only once) when the plug-in is first registered with the
