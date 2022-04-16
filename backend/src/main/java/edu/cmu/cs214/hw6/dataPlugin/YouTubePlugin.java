@@ -23,6 +23,7 @@ public class YouTubePlugin implements DataPlugin {
     private static final String DEVELOPER_KEY = "AIzaSyBbI8osWXhhCKTsz4JPyRksWGraPj5LMMI";
     private static final String APPLICATION_NAME = "YouTube DATA Plugin";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+    private Framework f;
 
     /**
      * Build and return an authorized API client service.
@@ -75,6 +76,6 @@ public class YouTubePlugin implements DataPlugin {
 
     @Override
     public void onRegister(Framework framework) {
-
+        this.f = framework;
     }
 }
