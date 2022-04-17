@@ -22,9 +22,9 @@ public class TwitterPluginTest {
     @Test
     public void testGetRetrievedData() {
         List<Data> result = dataPlugin.getRetrievedData("CarnegieMellon");
-        for (Data d: result) {
-            System.out.println(d.getText());
-        }
+//        for (Data d: result) {
+//            System.out.println(d.getText());
+//        }
         assertTrue(result.size() > 0);
         assertEquals(10, result.size());
     }

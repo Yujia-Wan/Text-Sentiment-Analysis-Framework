@@ -23,7 +23,7 @@ public class YouTubePluginTest {
         JSONObject json = new JSONObject();
         json.put("dataSourceURL", "E-T1gEeUqwA");
         List<Data> list = youTubePlugin.getRetrievedData(json);
-        System.out.println(list);
+//        System.out.println(list);
         assertTrue(list.size() > 0);
     }
 }

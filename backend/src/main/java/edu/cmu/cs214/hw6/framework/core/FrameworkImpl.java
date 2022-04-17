@@ -9,6 +9,7 @@ import com.google.cloud.language.v1.Document;
 import com.google.cloud.language.v1.Document.Type;
 import com.google.cloud.language.v1.LanguageServiceSettings;
 import com.google.cloud.language.v1.Sentiment;
+import edu.cmu.cs214.hw6.dataPlugin.Data;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -53,11 +54,11 @@ public class FrameworkImpl implements Framework {
 
     /**
      * Analyzes text message sentiment using Google Cloud Speech API.
-     * @param text Text to be analyzed.
+     * @param data A list of texts data to be analyzed.
      * @return Sentiment analysis result.
      * @throws IOException
      */
-    public static Sentiment analyzeSentimentText(String text) throws IOException {
+    public List<Data> analyzeSentimentText(List<Data> data) throws IOException {
         // Authentication
         CredentialsProvider credentialsProvider = FixedCredentialsProvider
                 .create(ServiceAccountCredentials.fromStream(new FileInputStream("/Users/yujiawang/key/sentiment-analysis-347302-56034cc1688f.json")));
@@ -67,16 +68,20 @@ public class FrameworkImpl implements Framework {
 
         // Instantiate the Language client com.google.cloud.language.v1.LanguageServiceClient
         try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create(languageServiceSettings)) {
-            Document doc = Document.newBuilder().setContent(text).setType(Type.PLAIN_TEXT).build();
-            AnalyzeSentimentResponse response = languageServiceClient.analyzeSentiment(doc);
-            Sentiment sentiment = response.getDocumentSentiment();
-            if (sentiment == null) {
-                System.out.println("No sentiment found");
-            } else {
-                System.out.printf("Sentiment magnitude: %.3f\n", sentiment.getMagnitude());
-                System.out.printf("Sentiment score: %.3f\n", sentiment.getScore());
+            for (Data d: data) {
+                String text = d.getText();
+                Document doc = Document.newBuilder().setContent(text).setType(Type.PLAIN_TEXT).build();
+                AnalyzeSentimentResponse response = languageServiceClient.analyzeSentiment(doc);
+                Sentiment sentiment = response.getDocumentSentiment();
+                if (sentiment == null) {
+                    System.out.println("No sentiment found");
+                } else {
+//                    System.out.printf("Sentiment magnitude: %.3f\n", sentiment.getMagnitude());
+//                    System.out.printf("Sentiment score: %.3f\n", sentiment.getScore());
+                    d.setScore(sentiment.getScore());
+                }
             }
-            return sentiment;
+            return data;
         }
     }
 
@@ -86,6 +91,18 @@ public class FrameworkImpl implements Framework {
 
     public List<String> getRegisteredDisplayPluginName() {
         return registeredDisplayPlugins.stream().map(DisplayPlugin::getDisplayPluginName).collect(Collectors.toList());
+    }
+
+    public String getCurrentDataPlugin() {
+        return this.currentDataPlugin.getDataPluginName();
+    }
+
+    public String getDataPluginIndex() {
+        return this.dataPluginIndex;
+    }
+
+    public String getCurrentDisplayPlugin() {
+        return this.currentDisplayPlugin.getDisplayPluginName();
     }
 
     public void setCurrentDataPlugin(DataPlugin plugin) {
