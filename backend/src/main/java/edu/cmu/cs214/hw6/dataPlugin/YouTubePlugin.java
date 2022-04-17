@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Some code from https://developers.google.com/youtube/v3/docs/commentThreads/list
  */
-public class YouTubePlugin {
+public class YouTubePlugin implements DataPlugin {
     private static final String DATA_PLUGIN_NAME = "youtube";
     private static final String APPLICATION_NAME = "YouTube Data Plugin";
     private static final String DEVELOPER_KEY = "AIzaSyBbI8osWXhhCKTsz4JPyRksWGraPj5LMMI";
@@ -39,23 +39,20 @@ public class YouTubePlugin {
                 .build();
     }
 
-//    @Override
+    @Override
     public String getDataPluginName() {
         return DATA_PLUGIN_NAME;
     }
 
-//    @Override
-//    public List<Data> getRetrievedData(String url) {
-//        return null;
-//    }
 
     /**
      * Execute API request. Get the latest 20 comments from a video.
-     * @param json JSONObject from frontend.
+     * @param videoId videoId of YouTube video.
      * @return list of comment data.
      */
-    public List<Data> getRetrievedData(JSONObject json) {
-        String videoId = json.getString("dataSourceURL");
+    @Override
+    public List<Data> getRetrievedData(String videoId) {
+
         List<Data> dataSource = new ArrayList<>();
         try {
             YouTube youtubeService = getService();
@@ -73,17 +70,17 @@ public class YouTubePlugin {
                 dataSource.add(data);
             }
         } catch (GeneralSecurityException | IOException exception) {
-            json.put("errorMessage", "Error!");
+            System.out.println("errorMessage : Error!");
             return null;
         }
         if (dataSource.size() == 0){
-            json.put("errorMessage", "No comment in this video.");
+            System.out.println("errorMessage : No comment in this video.");
             return null;
         }
         return dataSource;
     }
 
-//    @Override
+    @Override
     public void onRegister(Framework framework) {
         this.framework = framework;
     }

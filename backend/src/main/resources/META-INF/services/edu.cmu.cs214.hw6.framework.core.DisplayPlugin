@@ -1,5 +1,5 @@
 # List of display plugins to be registered by framework.
 # Provide fully qualified class names here ( edu.cmu.cs214.hw6.displayPlugin.XXX ),
 # with one plugin per line.
-edu.cmu.cs214.hw6.displayPlugin.HeatMapPlugin
+edu.cmu.cs214.hw6.displayPlugin.BarChartPlugin
 edu.cmu.cs214.hw6.displayPlugin.PieChartPlugin
