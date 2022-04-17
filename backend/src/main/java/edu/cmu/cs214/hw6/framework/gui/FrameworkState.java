@@ -5,14 +5,15 @@ import edu.cmu.cs214.hw6.framework.core.FrameworkImpl;
 import java.util.Arrays;
 import java.util.List;
 
-public class FrameworkState {
-    private DataPluginCell[] dataPlugins;
-    private DisplayPluginCell[] displayPlugins;
-    private String currentDataPlugin;
-    private String dataPluginIndex;
-    private String currentDisplayPlugin;
+public final class FrameworkState {
+    private final DataPluginCell[] dataPlugins;
+    private final DisplayPluginCell[] displayPlugins;
+    private final String currentDataPlugin;
+    private final String dataPluginIndex;
+    private final String currentDisplayPlugin;
 
-    private FrameworkState(DataPluginCell[] dataPlugins, DisplayPluginCell[] displayPlugins, String currentDataPlugin, String dataPluginIndex, String currentDisplayPlugin) {
+    private FrameworkState(DataPluginCell[] dataPlugins, DisplayPluginCell[] displayPlugins, String currentDataPlugin,
+                           String dataPluginIndex, String currentDisplayPlugin) {
         this.dataPlugins = dataPlugins;
         this.displayPlugins = displayPlugins;
         this.currentDataPlugin = currentDataPlugin;

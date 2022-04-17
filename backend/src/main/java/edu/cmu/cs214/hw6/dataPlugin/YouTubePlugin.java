@@ -10,7 +10,6 @@ import com.google.api.services.youtube.model.CommentThread;
 import com.google.api.services.youtube.model.CommentThreadListResponse;
 import edu.cmu.cs214.hw6.framework.core.DataPlugin;
 import edu.cmu.cs214.hw6.framework.core.Framework;
-import org.json.JSONObject;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
@@ -44,7 +43,6 @@ public class YouTubePlugin implements DataPlugin {
         return DATA_PLUGIN_NAME;
     }
 
-
     /**
      * Execute API request. Get the latest 20 comments from a video.
      * @param videoId videoId of YouTube video.
@@ -52,7 +50,6 @@ public class YouTubePlugin implements DataPlugin {
      */
     @Override
     public List<Data> getRetrievedData(String videoId) {
-
         List<Data> dataSource = new ArrayList<>();
         try {
             YouTube youtubeService = getService();

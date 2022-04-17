@@ -12,6 +12,7 @@ import com.google.cloud.language.v1.Sentiment;
 import edu.cmu.cs214.hw6.dataPlugin.Data;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +28,6 @@ public class FrameworkImpl implements Framework {
     public FrameworkImpl() {
         this.registeredDataPlugins = new ArrayList<>();
         this.registeredDisplayPlugins = new ArrayList<>();
-    }
-
-    public void process() {
     }
 
     /**
@@ -56,18 +54,19 @@ public class FrameworkImpl implements Framework {
      * Analyzes text message sentiment using Google Cloud Speech API.
      * @param data A list of texts data to be analyzed.
      * @return Sentiment analysis result.
-     * @throws IOException
      */
-    public List<Data> analyzeSentimentText(List<Data> data) throws IOException {
-        // Authentication
-        CredentialsProvider credentialsProvider = FixedCredentialsProvider
-                .create(ServiceAccountCredentials.fromStream(new FileInputStream("/Users/yujiawang/key/sentiment-analysis-347302-56034cc1688f.json")));
+    public List<Data> analyzeSentimentText(List<Data> data) {
+        try {
+            // Authentication
+            CredentialsProvider credentialsProvider = FixedCredentialsProvider
+                    .create(ServiceAccountCredentials.fromStream(
+                            new FileInputStream("/Users/yujiawang/key/sentiment-analysis-347302-56034cc1688f.json")));
 
-        LanguageServiceSettings languageServiceSettings = LanguageServiceSettings.newBuilder()
-                .setCredentialsProvider(credentialsProvider).build();
+            LanguageServiceSettings languageServiceSettings = LanguageServiceSettings.newBuilder()
+                    .setCredentialsProvider(credentialsProvider).build();
 
-        // Instantiate the Language client com.google.cloud.language.v1.LanguageServiceClient
-        try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create(languageServiceSettings)) {
+            // Instantiate the Language client com.google.cloud.language.v1.LanguageServiceClient
+            LanguageServiceClient languageServiceClient = LanguageServiceClient.create(languageServiceSettings);
             for (Data d: data) {
                 String text = d.getText();
                 Document doc = Document.newBuilder().setContent(text).setType(Type.PLAIN_TEXT).build();
@@ -81,8 +80,30 @@ public class FrameworkImpl implements Framework {
                     d.setScore(sentiment.getScore());
                 }
             }
-            return data;
+        } catch (FileNotFoundException fnfe) {
+            System.err.println("Cannot load file from given path.");
+        } catch (IOException ioe) {
+            System.err.println("Fail to perform sentiment analysis.");
         }
+        return data;
+    }
+
+    /**
+     * Processes data and displays result after client provides necessary keywords.
+     *
+     * @param dataPluginName Name of data plugin.
+     * @param dataPluginIndex Keyword for data plugin to retrieve.
+     * @param displayPluginName Name of display plugin.
+     */
+    public void process(DataPlugin dataPluginName, String dataPluginIndex, DisplayPlugin displayPluginName) {
+        setCurrentDataPlugin(dataPluginName);
+        setDataPluginIndex(dataPluginIndex);
+        setCurrentDisplayPlugin(displayPluginName);
+
+        List<Data> data;
+        data = this.currentDataPlugin.getRetrievedData(dataPluginIndex);
+        data = analyzeSentimentText(data);
+        // generate display data
     }
 
     public List<String> getRegisteredDataPluginName() {
