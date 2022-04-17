@@ -1,12 +1,28 @@
+#frameworkname {
+  height: 5vh;
+  background-color: white;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+}
+
 #instructions {
-  float: left;
-  width: 56vmin;
-  height: 12vmin;
-  background-color: #b3d3f3;
+  height: 10vh;
+  background-color: white;
+  padding: 0px;
   margin: 0px;
   text-align: center;
   font-size: 16px;
   white-space: pre-line;
+}
+
+.subtitle {
+  height: 1vh;
+  background-color: white;
+  padding: 0px;
+  margin: 0px;
+  text-align: left;
+  font-size: 20px;
 }
 
 /* Dropdown Button */

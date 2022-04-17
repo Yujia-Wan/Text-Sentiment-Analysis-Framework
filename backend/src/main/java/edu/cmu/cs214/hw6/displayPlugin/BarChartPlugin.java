@@ -21,7 +21,7 @@ public class BarChartPlugin implements DisplayPlugin {
     }
 
     @Override
-    public JSONObject getRetrievedData(List<Data> list) {
+    public JSONObject getVisualizedData(List<Data> list) {
         JSONObject json = new JSONObject();
         if (list.size() == 0) {
             json.put("errorMessage", "No data to plot!");

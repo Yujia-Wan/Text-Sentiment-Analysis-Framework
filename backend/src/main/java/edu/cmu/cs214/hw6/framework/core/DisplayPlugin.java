@@ -20,7 +20,7 @@ public interface DisplayPlugin {
     /**
      *
      * @param list
-     * @return
+     * @return JSONObject
      */
     JSONObject getVisualizedData(List<Data> list);
 
