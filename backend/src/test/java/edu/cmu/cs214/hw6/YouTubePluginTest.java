@@ -20,9 +20,7 @@ public class YouTubePluginTest {
 
     @Test
     public void testGetRetrievedData() {
-        JSONObject json = new JSONObject();
-        json.put("dataSourceURL", "E-T1gEeUqwA");
-        List<Data> list = youTubePlugin.getRetrievedData(json);
+        List<Data> list = youTubePlugin.getRetrievedData("E-T1gEeUqwA");
         System.out.println(list);
         assertTrue(list.size() > 0);
     }
