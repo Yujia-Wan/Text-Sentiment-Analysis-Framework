@@ -1,5 +1,6 @@
 package edu.cmu.cs214.hw6.framework.core;
 
+import edu.cmu.cs214.hw6.dataPlugin.Data;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public interface DataPlugin {
     String getDataPluginName();
 
     // Twitter plugin return xx tweets of given username, YouTube plugin return xx comments of given video url
-    List<String> getRetrievedData(String index);
+    List<Data> getRetrievedData(String index);
 
     /**
      * Called (only once) when the plug-in is first registered with the

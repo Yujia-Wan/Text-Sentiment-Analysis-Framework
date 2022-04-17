@@ -48,7 +48,7 @@ public class App extends NanoHTTPD {
     public  Response serve(IHTTPSession session) {
         String uri = session.getUri();
         Map<String, String> params = session.getParms();
-        // /generate?x=datapluginname&y=datapluginindex&z=displaypluginname
+        // .../generate?x=datapluginname&y=datapluginindex&z=displaypluginname
         if (uri.equals("/generate")){
             if (framework.hasDataPlugin() && framework.hasDataPluginIndex() && framework.hasDisplayPlugin()) {
                 framework.process();
