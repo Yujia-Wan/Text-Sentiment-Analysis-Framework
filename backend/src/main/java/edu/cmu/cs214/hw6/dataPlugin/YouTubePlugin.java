@@ -19,9 +19,10 @@ import java.util.List;
 /**
  * Some code from https://developers.google.com/youtube/v3/docs/commentThreads/list
  */
-public class YouTubePlugin implements DataPlugin {
-    private static final String DEVELOPER_KEY = "AIzaSyBbI8osWXhhCKTsz4JPyRksWGraPj5LMMI";
+public class YouTubePlugin {
+    private static final String DATA_PLUGIN_NAME = "youtube";
     private static final String APPLICATION_NAME = "YouTube Data Plugin";
+    private static final String DEVELOPER_KEY = "AIzaSyBbI8osWXhhCKTsz4JPyRksWGraPj5LMMI";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private Framework framework;
 
@@ -38,16 +39,21 @@ public class YouTubePlugin implements DataPlugin {
                 .build();
     }
 
+//    @Override
     public String getDataPluginName() {
-
+        return DATA_PLUGIN_NAME;
     }
+
+//    @Override
+//    public List<Data> getRetrievedData(String url) {
+//        return null;
+//    }
 
     /**
      * Execute API request. Get the latest 20 comments from a video.
      * @param json JSONObject from frontend.
      * @return list of comment data.
      */
-    @Override
     public List<Data> getRetrievedData(JSONObject json) {
         String videoId = json.getString("dataSourceURL");
         List<Data> dataSource = new ArrayList<>();
@@ -58,7 +64,6 @@ public class YouTubePlugin implements DataPlugin {
             CommentThreadListResponse response = request.setKey(DEVELOPER_KEY)
                     .setVideoId(videoId)
                     .execute();
-//            System.out.println(response);
             List<CommentThread> commentList = response.getItems();
             for (CommentThread comment : commentList){
                 CommentSnippet snippet = comment.getSnippet().getTopLevelComment().getSnippet();
@@ -78,7 +83,7 @@ public class YouTubePlugin implements DataPlugin {
         return dataSource;
     }
 
-    @Override
+//    @Override
     public void onRegister(Framework framework) {
         this.framework = framework;
     }

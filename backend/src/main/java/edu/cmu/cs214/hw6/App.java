@@ -44,27 +44,11 @@ public class App extends NanoHTTPD {
         System.out.println("Running!");
     }
 
-<<<<<<< HEAD
-//    @Override
-//    public  Response serve(IHTTPSession session) {
-//        String uri = session.getUri();
-//        Map<String, String> params = session.getParms();
-////        if (uri.equals("/dataplugin")) {
-////
-////        } else if (uri.equals()){
-////
-////        } else if (uri.equals()){
-////
-////        }
-//
-//        return newFixedLengthResponse();
-//    }
-=======
     @Override
     public  Response serve(IHTTPSession session) {
         String uri = session.getUri();
         Map<String, String> params = session.getParms();
-        // /generate?x=datapluginname&y=datapluginindex&z=displaypluginname
+        // .../generate?x=datapluginname&y=datapluginindex&z=displaypluginname
         if (uri.equals("/generate")){
             if (framework.hasDataPlugin() && framework.hasDataPluginIndex() && framework.hasDisplayPlugin()) {
                 framework.process();
@@ -75,7 +59,6 @@ public class App extends NanoHTTPD {
         FrameworkState frameworkState = FrameworkState.forFramework(this.framework);
         return newFixedLengthResponse(frameworkState.toString());
     }
->>>>>>> main
 
     /**
      * Load data plugins listed in META-INF/services/...

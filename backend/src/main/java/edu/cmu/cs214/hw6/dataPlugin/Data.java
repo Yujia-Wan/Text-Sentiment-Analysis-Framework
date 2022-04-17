@@ -3,12 +3,12 @@ package edu.cmu.cs214.hw6.dataPlugin;
 public class Data {
     private String text;
     private String time;
-    private double sentimentResult;
+    private float score;
 
-    public Data(String text, String time, double sentimentResult) {
+    public Data(String text, String time, float score) {
         this.text = text;
         this.time = time;
-        this.sentimentResult = sentimentResult;
+        this.score = score;
     }
 
     public String getText() {
@@ -19,8 +19,8 @@ public class Data {
         return this.time;
     }
 
-    public double getSentimentResult() {
-        return this.sentimentResult;
+    public float getScore() {
+        return this.score;
     }
 
     public void setText(String text) {
@@ -31,12 +31,12 @@ public class Data {
         this.time = time;
     }
 
-    public void setSentimentResult(double sentimentResult) {
-        this.sentimentResult = sentimentResult;
+    public void setScore(float score) {
+        this.score = score;
     }
 
     @Override
     public String toString() {
-        return "comment text : " + this.text + "; time : " + this.time + " ; sentiment result : " + this.sentimentResult;
+        return "text: " + this.text + "; time: " + this.time + "; score: " + this.score;
     }
 }
