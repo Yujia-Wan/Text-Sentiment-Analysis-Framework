@@ -6,7 +6,10 @@ import edu.cmu.cs214.hw6.framework.core.Framework;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BarChartPlugin implements DisplayPlugin {
     private static final String DISPLAY_PLUGIN_NAME = "bar";
@@ -37,6 +40,7 @@ public class BarChartPlugin implements DisplayPlugin {
         }
         json.put("x", new JSONArray(x));
         json.put("y", new JSONArray(y));
+        json.put("type", "bar");
         JSONArray array = new JSONArray();
         array.put(json);
         JSONObject output = new JSONObject();
