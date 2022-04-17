@@ -1,5 +1,10 @@
 package edu.cmu.cs214.hw6.framework.core;
 
+import edu.cmu.cs214.hw6.dataPlugin.Data;
+import org.json.JSONObject;
+
+import java.util.List;
+
 /**
  * The display plug-in interface that plug-ins use to implement and register visualization
  * with the {@link Framework}.
@@ -11,6 +16,8 @@ public interface DisplayPlugin {
      * @return Name of diaplay plugin.
      */
     String getDisplayPluginName();
+
+    JSONObject getRetrievedData(List<Data> list);
 
     /**
      * Called (only once) when the plug-in is first registered with the
