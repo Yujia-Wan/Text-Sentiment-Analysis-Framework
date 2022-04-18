@@ -59,9 +59,10 @@ public class FrameworkImpl implements Framework {
      * @return Sentiment analysis result.
      */
     @Override
-    public List<Data> analyzeSentimentText(List<Data> data) {
+    public List<Data> analyzeTextSentiment(List<Data> data) {
         try {
             // Authentication
+            // Change the file path to the json file you generated.
             CredentialsProvider credentialsProvider = FixedCredentialsProvider
                     .create(ServiceAccountCredentials.fromStream(
                             new FileInputStream("/Users/yujiawang/key/sentiment-analysis-347302-56034cc1688f.json")));
@@ -106,7 +107,7 @@ public class FrameworkImpl implements Framework {
         setCurrentDisplayPlugin(displayPlugin);
 
         List<Data> data = this.currentDataPlugin.getRetrievedData(dataPluginIndex);
-        data = analyzeSentimentText(data);
+        data = analyzeTextSentiment(data);
         this.result = this.currentDisplayPlugin.getVisualizedData(data);
     }
 

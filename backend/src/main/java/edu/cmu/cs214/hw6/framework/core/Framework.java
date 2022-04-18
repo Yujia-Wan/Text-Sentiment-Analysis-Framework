@@ -12,7 +12,7 @@ public interface Framework {
      * @param data A list of texts data to be analyzed.
      * @return Sentiment analysis result.
      */
-    List<Data> analyzeSentimentText(List<Data> data);
+    List<Data> analyzeTextSentiment(List<Data> data);
 
     /**
      * The whole data process of this framework:
