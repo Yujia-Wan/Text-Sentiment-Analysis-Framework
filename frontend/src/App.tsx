@@ -16,14 +16,13 @@ interface FrameworkState {
 interface Props {
 }
 
-const data = '{"values":[2,1,2],"type":"pie","labels":["Positive",' +  ' "hi" '  + ' ,"Negative"]}';
 let json: Data
 
 class App extends Component<Props, FrameworkState> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      instruction: "This is instruction.",
+      instruction: "hello",
       template: this.loadTemplate(),
     };
   }
@@ -33,31 +32,43 @@ class App extends Component<Props, FrameworkState> {
     return Handlebars.compile(src?.innerHTML, {});
   }
 
-  getInstruction(p: any): String {
+  getInstruction(p: any): any {
     return p["instruction"]
   }
 
 
   async submit(url: String) {
-    const href = "generate?" + url.split("?")[1];
+    const href = "submit?" + url.split("?")[1];
     const response = await fetch(href);
     const json1 = await response.json();
     const instruction = this.getInstruction(json1);
-    const resultJson = this.setData(instruction);
-    console.log(resultJson)
-    this.setState({ instruction: instruction });
+    // console.log(instruction);
+
+    this.setData(instruction);
+    this.setState({ instruction: "hello" });
   }
 
-  async setData(instruction: String) {
-    const data = '{"values":[2,1,2],"type":"pie","labels":["Positive",' + '"'+ instruction  + '"' + ' ,"Negative"]}';
-    json = JSON.parse(data)
+  async setData(instruction: any) {
+    // const data = '{"x":[2,1,2],"type":"pie","labels":["Positive",' + '"'+ instruction  + '"' + ' ,"Negative"]}';
+    const data = '{"x":["a","b","c"],"type":"bar","y":[0.8,0.9,0.1]}';
+    const jsontest = JSON.parse(data)
+    console.log(jsontest)
+    console.log("23232232")
+    
+    
+    // const data2 =    instruction ;
+    console.log("--------compare")
+    // console.log(data2);
+    json = instruction;
+    console.log(json)
+   
   }
   
 
 
   async switch() {
     if (
-      window.location.href.split("?")[0] === "http://localhost:3000/generate" &&
+      window.location.href.split("?")[0] === "http://localhost:3000/submit" &&
       oldHref !== window.location.href
     ) {
       this.submit(window.location.href);
