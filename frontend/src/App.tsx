@@ -1,41 +1,29 @@
 import Handlebars from 'handlebars'
+import { Data } from 'plotly.js'
 import { Component } from 'react'
 import Plot from 'react-plotly.js'
 import './App.css'
 
-const data = '{"values":[2,1,2],"type":"pie","labels":["Positive","Neutral","Negative"]}';
-let json = JSON.parse(data)
 
-var oldHref = "http://localhost:3000/"
-var dataPluginName: String
-var dataPluginIndex: String
-var displayPluginName: String
+var oldHref = "http://localhost:3000"
 
-interface DataPluginCell {
-  name: String;
-  link: String;
-}
-
-interface DisplayPluginCell {
-  name: String;
-  link: String;
-}
 
 interface FrameworkState {
-  instructions: String;
-  // dataPluginCells: Array<DataPluginCell>;
-  // displayPluginCells: Array<DisplayPluginCell>;
+  instruction: String;
   template: HandlebarsTemplateDelegate<any>;
 }
 
 interface Props {
 }
 
+const data = '{"values":[2,1,2],"type":"pie","labels":["Positive",' +  ' "hi" '  + ' ,"Negative"]}';
+let json: Data
+
 class App extends Component<Props, FrameworkState> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      instructions: "This is instructions.",
+      instruction: "This is instruction.",
       template: this.loadTemplate(),
     };
   }
@@ -45,64 +33,31 @@ class App extends Component<Props, FrameworkState> {
     return Handlebars.compile(src?.innerHTML, {});
   }
 
-  getDataPluginName(): String {
-    return dataPluginName;
+  getInstruction(p: any): String {
+    return p["instruction"]
   }
 
-  getDataPluginIndex(): String {
-    return dataPluginIndex;
-  }
-
-  getDisplayPluginName(): String {
-    return displayPluginName;
-  }
-
-  setDataPluginName(name: String): void {
-    dataPluginName = name;
-  }
-
-  setDataPluginIndex(index: String): void {
-    dataPluginIndex = index;
-  }
-
-  setDisplayPluginName(name: String): void {
-    displayPluginName = name;
-  }
 
   async submit(url: String) {
-    const href = "?" + url.split("?")[1];
+    const href = "generate?" + url.split("?")[1];
     const response = await fetch(href);
-    const json = await response.json();
+    const json1 = await response.json();
+    const instruction = this.getInstruction(json1);
+    const resultJson = this.setData(instruction);
+    console.log(resultJson)
+    this.setState({ instruction: instruction });
   }
 
+  async setData(instruction: String) {
+    const data = '{"values":[2,1,2],"type":"pie","labels":["Positive",' + '"'+ instruction  + '"' + ' ,"Negative"]}';
+    json = JSON.parse(data)
+  }
+  
+
+
   async switch() {
-    // if (
-    //   window.location.href.split("?")[0] === "http://localhost:3000/datapluginname" &&
-    //   oldHref !== window.location.href
-    // ) {
-    //   // http://localhost:3000/datapluginname?x=twitter
-    //   console.log(window.location.href);
-    //   this.setDataPluginName(window.location.href.split("?")[1]);
-    //   oldHref = window.location.href;
-    // } else if (
-    //   window.location.href.split("?")[0] === "http://localhost:3000/datapluginindex" &&
-    //   oldHref !== window.location.href
-    // ) {
-    //   // http://localhost:3000/datapluginindex?y=username
-    //   console.log(window.location.href);
-    //   this.setDataPluginIndex(window.location.href.split("?")[1]);
-    //   oldHref = window.location.href;
-    // } else if (
-    //   window.location.href.split("?")[0] === "http://localhost:3000/displaypluginname" &&
-    //   oldHref !== window.location.href
-    // ) {
-    //   // http://localhost:3000/displaypluginname?z=piechart
-    //   console.log(window.location.href);
-    //   this.setDisplayPluginName(window.location.href.split("?")[1]);
-    //   oldHref = window.location.href;
-    // } else
     if (
-      window.location.href === "http://localhost:3000/" &&
+      window.location.href.split("?")[0] === "http://localhost:3000/generate" &&
       oldHref !== window.location.href
     ) {
       this.submit(window.location.href);
@@ -112,18 +67,19 @@ class App extends Component<Props, FrameworkState> {
 
   render() {
     this.switch()
+  
     return (
       <div className="App">
         <div
           dangerouslySetInnerHTML={{
-            __html: this.state.template({ instructions: "This is instructions." }),
+            __html: this.state.template({ instruction: this.state.instruction }),
           }}
         />
         <Plot
         data={[
           json,
         ]}
-        layout={ {width: 320, height: 240} }
+        layout={ {width: 500, height: 400} }
       />
       </div>
     )
