@@ -13,11 +13,18 @@ public interface DisplayPlugin {
 
     /**
      * Gets the name of the plug-in visualization.
+     *
      * @return Name of diaplay plugin.
      */
     String getDisplayPluginName();
 
-    JSONObject getVisualizedData(List<Data> list);
+    /**
+     * Calculates display data.
+     *
+     * @param list A list of data.
+     * @return JSONObject sent to frontend.
+     */
+    JSONObject getVisualizedData(List<Data> data);
 
     /**
      * Called (only once) when the plug-in is first registered with the

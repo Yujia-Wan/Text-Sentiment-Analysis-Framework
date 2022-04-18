@@ -6,15 +6,29 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <div id="framewotkname">Test Sentiment Analysis</div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <div id="handlebars">
+      <div id="instructions">{{instructions}}</div>
+
+      <form action="">
+        <div class="subtitle">Data Source</div>
+        {{#each dataplugincells}}
+        <a href={{link}}><div class="dataplugincell"><input type="radio" name="datapluginname" value={{name}}>{{name}}</div></a><br>
+        {{/each}}
+
+        Search Index: <input type="text" name="datapluginindex"><br>
+
+        <div class="subtitle">Display</div>
+        {{#each displayplugincells}}
+        <a href={{link}}><div class="displayplugincell"><input type="radio" name="displaypluginname" value={{name}}>{{name}}</div></a><br>
+        {{/each}}
+
+        <input type="submit" value="Submit">
+
+        <div class="subtitle">Result</div>
+      </form>
+    </div>
   </body>
 </html>

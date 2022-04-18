@@ -11,11 +11,17 @@ public interface DataPlugin {
 
     /**
      * Gets the name of the plug-in data source.
+     *
      * @return Name of data plugin.
      */
     String getDataPluginName();
 
-    // Twitter plugin return xx tweets of given username, YouTube plugin return xx comments of given video url
+    /**
+     * Retrieves texts and time from given data source.
+     *
+     * @param index Index used for search (username for Twitter, video url for YouTube).
+     * @return A list of data.
+     */
     List<Data> getRetrievedData(String index);
 
     /**

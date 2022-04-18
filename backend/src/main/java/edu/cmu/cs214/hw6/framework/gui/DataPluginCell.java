@@ -1,10 +1,10 @@
 package edu.cmu.cs214.hw6.framework.gui;
 
-public class Plugin {
+public class DataPluginCell {
     private final String name;
     private final String link;
 
-    public Plugin(String name, String link){
+    public DataPluginCell(String name, String link) {
         this.name = name;
         this.link = link;
     }

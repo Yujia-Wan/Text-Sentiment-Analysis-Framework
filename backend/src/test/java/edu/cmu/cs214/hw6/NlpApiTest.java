@@ -1,6 +1,25 @@
 package edu.cmu.cs214.hw6;
 
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 public class NlpApiTest {
+
+    @Before
+    public void setUp() {
+
+    }
+
+    @Test
+    public void testAnalyzeSentimentText() {
+
+
+    }
+
+
     // Google's Natural Language API test
 //    public static void main(String... args) throws IOException {
 //        // Authentication

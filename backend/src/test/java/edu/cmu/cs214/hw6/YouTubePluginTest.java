@@ -8,7 +8,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
-import org.json.JSONObject;
 
 public class YouTubePluginTest {
     private YouTubePlugin youTubePlugin;
@@ -20,6 +19,7 @@ public class YouTubePluginTest {
 
     @Test
     public void testGetRetrievedData() {
+//        System.out.println(list);
         List<Data> list = youTubePlugin.getRetrievedData("E-T1gEeUqwA");
         System.out.println(list);
         assertTrue(list.size() > 0);
