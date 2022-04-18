@@ -24,6 +24,7 @@ public class YouTubePlugin implements DataPlugin {
     private static final String DEVELOPER_KEY = "AIzaSyBbI8osWXhhCKTsz4JPyRksWGraPj5LMMI";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private Framework framework;
+    private static final int NUMBER = 10;
 
     /**
      * Build and return an authorized API client service.
@@ -62,7 +63,7 @@ public class YouTubePlugin implements DataPlugin {
             for (CommentThread comment : commentList){
                 CommentSnippet snippet = comment.getSnippet().getTopLevelComment().getSnippet();
                 String text = snippet.getTextOriginal();
-                String time = snippet.getPublishedAt().toString();
+                String time = snippet.getPublishedAt().toString().substring(0, NUMBER);
                 Data data = new Data(text, time, 0);
                 dataSource.add(data);
             }
