@@ -35,8 +35,8 @@ public class TwitterPlugin implements DataPlugin {
      * @param username Twitter username.
      * @param bearerToken Bearer token.
      * @return User ID.
-     * @throws IOException
-     * @throws URISyntaxException
+     * @throws IOException I/O failure.
+     * @throws URISyntaxException Invalid URI.
      */
     private static String getUser(String username, String bearerToken) throws IOException, URISyntaxException {
         String userId = null;
@@ -79,8 +79,8 @@ public class TwitterPlugin implements DataPlugin {
      * @param userId User ID.
      * @param bearerToken Bearer token.
      * @return A list of tweets text data (default: 10 tweets).
-     * @throws IOException
-     * @throws URISyntaxException
+     * @throws IOException I/O failure.
+     * @throws URISyntaxException Invalid URI.
      */
     private static List<Data> getTweets(String userId, String bearerToken) throws IOException, URISyntaxException {
         List<Data> result = new ArrayList<>();
@@ -106,10 +106,11 @@ public class TwitterPlugin implements DataPlugin {
             String tweetResponse = EntityUtils.toString(entity, "UTF-8");
             JSONObject json = new JSONObject(tweetResponse);
             JSONArray tokenList = json.getJSONArray("data");
-            for(int i = 0; i < tokenList.length(); i++) {
+            for (int i = 0; i < tokenList.length(); i++) {
                 JSONObject token = tokenList.getJSONObject(i);
                 String tweet = token.getString("text");
-                Data data = new Data(tweet, null, 0);
+                String time = token.getString("created_at");
+                Data data = new Data(tweet, time, 0);
                 result.add(data);
             }
         }

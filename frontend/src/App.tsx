@@ -8,8 +8,20 @@ var dataPluginName: String
 var dataPluginIndex: String
 var displayPluginName: String
 
-interface FrameworkState {
+interface DataPluginCell {
+  name: String;
+  link: String;
+}
 
+interface DisplayPluginCell {
+  name: String;
+  link: String;
+}
+
+interface FrameworkState {
+  instructions: String;
+  dataPluginCells: Array<DataPluginCell>;
+  displayPluginCells: Array<DisplayPluginCell>;
 }
 
 interface Props {
@@ -19,7 +31,8 @@ class App extends Component<Props, FrameworkState> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      template: this.loadTemplate,
+      template: this.loadTemplate(),
+      
       
     };
   }

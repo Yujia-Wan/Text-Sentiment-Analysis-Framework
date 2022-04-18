@@ -18,7 +18,7 @@ public class BarChartTest {
     }
 
     @Test
-    public void testGetRetrievedData() {
+    public void testGetVisualizedData() {
         List<Data> input = new ArrayList<>();
         Data data1 = new Data("","2022-04-16", (float) 0.8);
         Data data2 = new Data("","2022-04-16", (float) 1);

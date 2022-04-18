@@ -43,7 +43,6 @@ public class YouTubePlugin implements DataPlugin {
         return DATA_PLUGIN_NAME;
     }
 
-
     /**
      * Execute API request. Get the latest 20 comments from a video.
      * @param videoId videoId of YouTube video.
@@ -51,7 +50,6 @@ public class YouTubePlugin implements DataPlugin {
      */
     @Override
     public List<Data> getRetrievedData(String videoId) {
-
         List<Data> dataSource = new ArrayList<>();
         try {
             YouTube youtubeService = getService();
