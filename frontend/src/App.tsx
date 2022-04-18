@@ -1,39 +1,23 @@
 import Handlebars from "handlebars"
 import { Component } from 'react'
-import { threadId } from "worker_threads"
 import './App.css'
 
 var oldHref = "http://localhost:3000"
-var dataPluginName: String
-var dataPluginIndex: String
-var displayPluginName: String
 
-interface DataPluginCell {
-  name: String;
-  link: String;
-}
-
-interface DisplayPluginCell {
-  name: String;
-  link: String;
-}
-
-interface FrameworkState {
-  instructions: String;
-  dataPluginCells: Array<DataPluginCell>;
-  displayPluginCells: Array<DisplayPluginCell>;
+interface Test {
+  template: HandlebarsTemplateDelegate<any>
+  test: String
 }
 
 interface Props {
 }
 
-class App extends Component<Props, FrameworkState> {
+class App extends Component<Props, Test> {
   constructor(props: Props) {
     super(props);
     this.state = {
       template: this.loadTemplate(),
-      
-      
+      test: "TEST!!!!!!!!!!!!!"
     };
   }
 
@@ -42,70 +26,24 @@ class App extends Component<Props, FrameworkState> {
     return Handlebars.compile(src?.innerHTML, {});
   }
 
-  getDataPluginName(): String {
-    return dataPluginName;
-  }
-
-  getDataPluginIndex(): String {
-    return dataPluginIndex;
-  }
-
-  getDisplayPluginName(): String {
-    return displayPluginName;
-  }
-
-  setDataPluginName(name: String): void {
-    dataPluginName = name;
-  }
-
-  setDataPluginIndex(index: String): void {
-    dataPluginIndex = index;
-  }
-
-  setDisplayPluginName(name: String): void {
-    displayPluginName = name;
-  }
-
-  async generate() {
-    const href = "generate?" + this.getDataPluginName + "&" + this.getDataPluginIndex + "&" + this.getDisplayPluginName;
-    const response = await fetch(href);
-    const json = await response.json();
-
-  }
+  // async generate() {
+    // const href = "generate?" + this.getDataPluginName + "&" + this.getDataPluginIndex + "&" + this.getDisplayPluginName;
+    // const response = await fetch(href);
+    // const json = await response.json();
+  // }
 
   async switch() {
     if (
-      window.location.href.split("?")[0] === "http://localhost:3000/datapluginname" &&
+      window.location.href.split("?")[0] === "http://localhost:3000" &&
       oldHref !== window.location.href
     ) {
-      // http://localhost:3000/datapluginname?x=twitter
       console.log(window.location.href);
-      this.setDataPluginName(window.location.href.split("?")[1]);
-      oldHref = window.location.href;
-    } else if (
-      window.location.href.split("?")[0] === "http://localhost:3000/datapluginindex" &&
-      oldHref !== window.location.href
-    ) {
-      // http://localhost:3000/datapluginindex?y=username
-      console.log(window.location.href);
-      this.setDataPluginIndex(window.location.href.split("?")[1]);
-      oldHref = window.location.href;
-    } else if (
-      window.location.href.split("?")[0] === "http://localhost:3000/displaypluginname" &&
-      oldHref !== window.location.href
-    ) {
-      // http://localhost:3000/displaypluginname?z=piechart
-      console.log(window.location.href);
-      this.setDisplayPluginName(window.location.href.split("?")[1]);
-      oldHref = window.location.href;
-    } else if (
-      window.location.href === "http://localhost:3000/generate" &&
-      oldHref !== window.location.href
-    ) {
-      this.generate();
+      console.log("hello!!!");
+
+      // this.setDataPluginName(window.location.href.split("?")[1]);
       oldHref = window.location.href;
     }
-  }
+  };
 
   render() {
     this.switch()
@@ -113,7 +51,7 @@ class App extends Component<Props, FrameworkState> {
       <div className="App">
         <div
           dangerouslySetInnerHTML={{
-            __html: this.state.template({}),
+            __html: this.state.template({ test: this.state.test }),
           }}
         />
       </div>

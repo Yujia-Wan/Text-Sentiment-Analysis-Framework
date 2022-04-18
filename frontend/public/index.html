@@ -23,10 +23,14 @@
         <input type="submit" value="Submit">
       </form>
       <div id="plot"></div>
+      <div id="test">
+        {{test}}
+      </div>
+      
       <script>
         var data = [{
-        x: ["04-16", "04-15"],
-        y: [22.0, 12.0],
+        x: ["hello"],
+        y: [22.0],
         type: 'bar'}];
         Plotly.newPlot('plot', data);
       </script>
