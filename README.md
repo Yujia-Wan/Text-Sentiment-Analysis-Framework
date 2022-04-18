@@ -1,6 +1,11 @@
 # hw6-analytics-framework-youshallpass
 
 ## Starting a Framework
+### Prerequisites
+You will need a [Google Cloud Platform Console](https://console.cloud.google.com/apis/dashboard) project with the Natural Language [API enabled](https://console.cloud.google.com/apis/enableflow?apiid=language.googleapis.com&project=sentiment-analysis-347302). You will need to [enable billing](https://cloud.google.com/apis/docs/getting-started#enabling_billing) to use Google Natural Language. [Follow these instructions](https://cloud.google.com/resource-manager/docs/creating-managing-projects) to get your project set up. You will also need to set up the local development environment by [installing the Google Cloud SDK](https://cloud.google.com/sdk/) and running the following commands in command line: ```gcloud auth login``` and ```gcloud config set project [YOUR PROJECT ID]```.
+
+To simplify, you can use the JSON credentials file provided in the src/main/resources/META-INF/services/ directory and ignore the Authentication section.
+
 ### Authentication
 See the [Authentication](https://github.com/googleapis/google-cloud-java#authentication) section in the base directory's README.
 #### Using a service account (recommended)
