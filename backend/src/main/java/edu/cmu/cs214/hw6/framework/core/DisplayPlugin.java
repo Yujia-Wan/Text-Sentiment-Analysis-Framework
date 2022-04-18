@@ -17,7 +17,7 @@ public interface DisplayPlugin {
      */
     String getDisplayPluginName();
 
-    JSONObject getRetrievedData(List<Data> list);
+    JSONObject getVisualizedData(List<Data> list);
 
     /**
      * Called (only once) when the plug-in is first registered with the

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BarChartTest {
-    private BarChartPlugin barChartPlugin;
+    private DisplayPlugin barChartPlugin;
 
     @Before
     public void setUp() {
@@ -26,8 +26,7 @@ public class BarChartTest {
         input.add(data1);
         input.add(data2);
         input.add(data3);
-        DisplayPlugin bar = new BarChartPlugin();
-        JSONObject output = bar.getRetrievedData(input);
+        JSONObject output = barChartPlugin.getVisualizedData(input);
         System.out.println(output);
     }
 }
