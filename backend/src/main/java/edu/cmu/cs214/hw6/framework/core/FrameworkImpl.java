@@ -80,8 +80,6 @@ public class FrameworkImpl implements Framework {
                 if (sentiment == null) {
                     System.out.println("No sentiment found");
                 } else {
-//                    System.out.printf("Sentiment magnitude: %.3f\n", sentiment.getMagnitude());
-//                    System.out.printf("Sentiment score: %.3f\n", sentiment.getScore());
                     d.setScore(sentiment.getScore());
                 }
             }
