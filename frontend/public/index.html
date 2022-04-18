@@ -1,33 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Text Sentiment Analysis</title>
+    <script src="https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="framewotkname">Text Sentiment Analysis</div>
     <div id="root"></div>
-
-    <div id="framewotkname">Test Sentiment Analysis</div>
-
     <div id="handlebars">
       <div id="instructions">{{instructions}}</div>
 
       <form action="">
-        <div class="subtitle">Data Source</div>
-        {{#each dataplugincells}}
-        <a href={{link}}><div class="dataplugincell"><input type="radio" name="datapluginname" value={{name}}>{{name}}</div></a><br>
-        {{/each}}
-
-        Search Index: <input type="text" name="datapluginindex"><br>
-
-        <div class="subtitle">Display</div>
-        {{#each displayplugincells}}
-        <a href={{link}}><div class="displayplugincell"><input type="radio" name="displaypluginname" value={{name}}>{{name}}</div></a><br>
-        {{/each}}
-
+        Choose data plugin: 
+        <select name="dataplugin">
+          <option value="0">twitter</option>
+          <option value="1">youtube</option>
+        </select><br>
+        Search Index: <input type="text" required="required" name="datapluginindex"><br>
+        Choose display plugin: 
+        <select name="displayplugin">
+          <option value="0">bar</option>
+          <option value="1">pie</option>
+        </select><br>
         <input type="submit" value="Submit">
-
-        <div class="subtitle">Result</div>
       </form>
     </div>
   </body>
