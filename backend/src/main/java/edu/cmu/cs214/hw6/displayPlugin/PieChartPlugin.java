@@ -51,11 +51,7 @@ public class PieChartPlugin implements DisplayPlugin {
         json.put("labels", new JSONArray(labels));
 
         json.put("type", "pie");
-        JSONArray array = new JSONArray();
-        array.put(json);
-        JSONObject result = new JSONObject();
-        result.put("data", array);
-        return result;
+        return json;
     }
 
     @Override

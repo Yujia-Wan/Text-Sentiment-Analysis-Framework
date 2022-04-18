@@ -3,6 +3,8 @@ package edu.cmu.cs214.hw6;
 import edu.cmu.cs214.hw6.framework.core.DataPlugin;
 import edu.cmu.cs214.hw6.framework.core.DisplayPlugin;
 import edu.cmu.cs214.hw6.framework.core.FrameworkImpl;
+import edu.cmu.cs214.hw6.framework.gui.FrameworkState;
+import edu.cmu.cs214.hw6.framework.gui.State;
 import fi.iki.elonen.NanoHTTPD;
 
 import java.io.IOException;
@@ -21,7 +23,7 @@ public class App extends NanoHTTPD {
         }
     }
 
-    private static final int PORT = 8080;
+    private static final int PORT = 8000;
     private FrameworkImpl framework;
     private List<DataPlugin> dataPlugins;
     private List<DisplayPlugin> displayPlugins;
@@ -46,17 +48,23 @@ public class App extends NanoHTTPD {
     @Override
     public  Response serve(IHTTPSession session) {
         String uri = session.getUri();
+        System.out.println(uri);
         Map<String, String> params = session.getParms();
-        // uri: ...3000/?dataplugin=0&datapluginindex=xxx&displayplugin=0
-        if (uri.equals("/")){
+        if (params.get("dataplugin") != null && params.get("datapluginindex") != null && params.get("displayplugin") != null) {
+            System.out.println("123321231231");
             DataPlugin dataPlugin = dataPlugins.get(Integer.parseInt(params.get("dataplugin")));
             String dataPluginIndex = params.get("datapluginindex");
             DisplayPlugin displayPlugin = displayPlugins.get(Integer.parseInt(params.get("displayplugin")));
             framework.process(dataPlugin, dataPluginIndex, displayPlugin);
+        } else {
+            return null;
         }
 
-//        FrameworkState frameworkState = FrameworkState.forFramework(this.framework);
-        return newFixedLengthResponse(framework.getResult());
+        State frameworkState = State.forState(framework);
+        System.out.println("here!!!");
+        String test = frameworkState.toString();
+        System.out.println(test);
+        return newFixedLengthResponse(test);
     }
 
     /**

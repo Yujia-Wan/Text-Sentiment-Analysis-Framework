@@ -41,11 +41,7 @@ public class BarChartPlugin implements DisplayPlugin {
         json.put("x", new JSONArray(x));
         json.put("y", new JSONArray(y));
         json.put("type", "bar");
-        JSONArray array = new JSONArray();
-        array.put(json);
-        JSONObject output = new JSONObject();
-        output.put("data", array);
-        return output;
+        return json;
     }
 
     @Override
