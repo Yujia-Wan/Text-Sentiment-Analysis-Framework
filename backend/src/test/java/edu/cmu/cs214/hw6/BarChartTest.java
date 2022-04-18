@@ -27,7 +27,7 @@ public class BarChartTest {
         input.add(data2);
         input.add(data3);
         DisplayPlugin bar = new BarChartPlugin();
-        JSONObject output = bar.getRetrievedData(input);
+        JSONObject output = bar.getVisualizedData(input);
         System.out.println(output);
     }
 }
