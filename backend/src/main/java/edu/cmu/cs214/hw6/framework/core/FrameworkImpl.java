@@ -10,6 +10,7 @@ import com.google.cloud.language.v1.Document.Type;
 import com.google.cloud.language.v1.LanguageServiceSettings;
 import com.google.cloud.language.v1.Sentiment;
 import edu.cmu.cs214.hw6.dataPlugin.Data;
+import org.json.JSONObject;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -94,8 +95,9 @@ public class FrameworkImpl implements Framework {
      * @param dataPluginName Name of data plugin.
      * @param dataPluginIndex Keyword for data plugin to retrieve.
      * @param displayPluginName Name of display plugin.
+     * @return JSONObject sent to frontend.
      */
-    public void process(DataPlugin dataPluginName, String dataPluginIndex, DisplayPlugin displayPluginName) {
+    public JSONObject process(DataPlugin dataPluginName, String dataPluginIndex, DisplayPlugin displayPluginName) {
         setCurrentDataPlugin(dataPluginName);
         setDataPluginIndex(dataPluginIndex);
         setCurrentDisplayPlugin(displayPluginName);
@@ -103,7 +105,8 @@ public class FrameworkImpl implements Framework {
         List<Data> data;
         data = this.currentDataPlugin.getRetrievedData(dataPluginIndex);
         data = analyzeSentimentText(data);
-        // generate display data
+        JSONObject json = this.currentDisplayPlugin.getVisualizedData(data);
+        return json;
     }
 
     public List<String> getRegisteredDataPluginName() {

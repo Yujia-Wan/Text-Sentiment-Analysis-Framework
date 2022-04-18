@@ -21,16 +21,16 @@ public class BarChartPlugin implements DisplayPlugin {
     }
 
     @Override
-    public JSONObject getVisualizedData(List<Data> list) {
+    public JSONObject getVisualizedData(List<Data> data) {
         JSONObject json = new JSONObject();
-        if (list.size() == 0) {
+        if (data.isEmpty()) {
             json.put("errorMessage", "No data to plot!");
         }
         Map<String, Integer> number = new HashMap<>();
         Map<String, Float> score = new HashMap<>();
-        for (Data data : list) {
-            number.put(data.getTime(), number.getOrDefault(data.getTime(), 0) + 1);
-            score.put(data.getTime(), score.getOrDefault(data.getTime(), (float)0.0) + data.getScore());
+        for (Data d : data) {
+            number.put(d.getTime(), number.getOrDefault(d.getTime(), 0) + 1);
+            score.put(d.getTime(), score.getOrDefault(d.getTime(), (float)0.0) + d.getScore());
         }
         List<String> x = new ArrayList<>();
         List<Float> y = new ArrayList<>();

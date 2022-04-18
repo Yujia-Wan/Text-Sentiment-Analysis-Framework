@@ -18,11 +18,12 @@ public interface DisplayPlugin {
     String getDisplayPluginName();
 
     /**
+     * Calculates display data.
      *
-     * @param list
-     * @return JSONObject
+     * @param data A list of data.
+     * @return JSONObject sent to frontend.
      */
-    JSONObject getVisualizedData(List<Data> list);
+    JSONObject getVisualizedData(List<Data> data);
 
     /**
      * Called (only once) when the plug-in is first registered with the

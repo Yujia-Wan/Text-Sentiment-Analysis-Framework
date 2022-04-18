@@ -106,7 +106,7 @@ public class TwitterPlugin implements DataPlugin {
             String tweetResponse = EntityUtils.toString(entity, "UTF-8");
             JSONObject json = new JSONObject(tweetResponse);
             JSONArray tokenList = json.getJSONArray("data");
-            for(int i = 0; i < tokenList.length(); i++) {
+            for (int i = 0; i < tokenList.length(); i++) {
                 JSONObject token = tokenList.getJSONObject(i);
                 String tweet = token.getString("text");
                 String time = token.getString("created_at");
