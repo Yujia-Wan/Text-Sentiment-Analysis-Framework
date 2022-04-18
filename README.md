@@ -23,5 +23,16 @@ npm start
 ```
 This will start a server at http://localhost:3000
 
-### Fix Handlebars
+### Fixing Handlebars
 There is an error with Handlebars working with Webpack. A simple fix for this error: after you run ```npm install```, this creates a node_modules folder within the frontend folder. Then, in that folder, find the Handlebars folder, and go to its package.json. You will find in this package.json, there is a section called ```browser```. Add to this dictionary the line ```"fs": false```.
+
+### GUI
+- Select data source. Now we support Twitter/YouTube.
+- Input search index. For Twitter, input Twitter username (like "CarnegieMellon"). For YouTube, input video url (if url is https://www.youtube.com/watch?v=Hp_Eg8NMfT0, you should input "Hp_Eg8NMfT0").
+- Select display chart. Now we support Bar Chart/Pie Chart.
+
+## Adding Data Plugin
+To register your plugin with the framework, add the fully-qualified class name of your plugin to the edu.cmu.cs214.hw6.framework.core.DataPlugin file in the src/main/resources/META-INF/services/ directory.
+
+## Adding Display Plugin
+To register your plugin with the framework, add the fully-qualified class name of your plugin to the edu.cmu.cs214.hw6.framework.core.DisplayPlugin file in the src/main/resources/META-INF/services/ directory.

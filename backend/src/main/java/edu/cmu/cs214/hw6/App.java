@@ -4,8 +4,6 @@ import edu.cmu.cs214.hw6.framework.core.DataPlugin;
 import edu.cmu.cs214.hw6.framework.core.DisplayPlugin;
 import edu.cmu.cs214.hw6.framework.core.FrameworkImpl;
 import edu.cmu.cs214.hw6.framework.gui.DataState;
-import edu.cmu.cs214.hw6.framework.gui.FrameworkState;
-import edu.cmu.cs214.hw6.framework.gui.DataState;
 import fi.iki.elonen.NanoHTTPD;
 
 import java.io.IOException;
@@ -51,7 +49,6 @@ public class App extends NanoHTTPD {
         String uri = session.getUri();
         Map<String, String> params = session.getParms();
         if (params.get("dataplugin") != null && params.get("datapluginindex") != null && params.get("displayplugin") != null) {
-            System.out.println("123321231231");
             DataPlugin dataPlugin = dataPlugins.get(Integer.parseInt(params.get("dataplugin")));
             String dataPluginIndex = params.get("datapluginindex");
             DisplayPlugin displayPlugin = displayPlugins.get(Integer.parseInt(params.get("displayplugin")));
