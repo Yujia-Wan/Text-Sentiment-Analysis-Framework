@@ -25,6 +25,7 @@ public class FrameworkImpl implements Framework {
     private DisplayPlugin currentDisplayPlugin;
     private List<DataPlugin> registeredDataPlugins;
     private List<DisplayPlugin> registeredDisplayPlugins;
+    private JSONObject result;
 
     public FrameworkImpl() {
         this.registeredDataPlugins = new ArrayList<>();
@@ -52,10 +53,12 @@ public class FrameworkImpl implements Framework {
     }
 
     /**
-     * Analyzes text message sentiment using Google Cloud Speech API.
+     * Analyzes text message sentiment using Google's Natural Language API.
+     *
      * @param data A list of texts data to be analyzed.
      * @return Sentiment analysis result.
      */
+    @Override
     public List<Data> analyzeSentimentText(List<Data> data) {
         try {
             // Authentication
@@ -90,23 +93,21 @@ public class FrameworkImpl implements Framework {
     }
 
     /**
-     * Processes data and displays result after client provides necessary keywords.
+     * Processes data and calculates display data after client provides necessary keywords.
      *
-     * @param dataPluginName Name of data plugin.
+     * @param dataPlugin Data plugin.
      * @param dataPluginIndex Keyword for data plugin to retrieve.
-     * @param displayPluginName Name of display plugin.
-     * @return JSONObject sent to frontend.
+     * @param displayPlugin Display plugin.
      */
-    public JSONObject process(DataPlugin dataPluginName, String dataPluginIndex, DisplayPlugin displayPluginName) {
-        setCurrentDataPlugin(dataPluginName);
+    @Override
+    public void process(DataPlugin dataPlugin, String dataPluginIndex, DisplayPlugin displayPlugin) {
+        setCurrentDataPlugin(dataPlugin);
         setDataPluginIndex(dataPluginIndex);
-        setCurrentDisplayPlugin(displayPluginName);
+        setCurrentDisplayPlugin(displayPlugin);
 
-        List<Data> data;
-        data = this.currentDataPlugin.getRetrievedData(dataPluginIndex);
+        List<Data> data = this.currentDataPlugin.getRetrievedData(dataPluginIndex);
         data = analyzeSentimentText(data);
-        JSONObject json = this.currentDisplayPlugin.getVisualizedData(data);
-        return json;
+        this.result = this.currentDisplayPlugin.getVisualizedData(data);
     }
 
     public List<String> getRegisteredDataPluginName() {
@@ -129,6 +130,10 @@ public class FrameworkImpl implements Framework {
         return this.currentDisplayPlugin.getDisplayPluginName();
     }
 
+    public String getResult() {
+        return this.result.toString();
+    }
+
     public void setCurrentDataPlugin(DataPlugin plugin) {
         this.currentDataPlugin = plugin;
     }
@@ -139,17 +144,5 @@ public class FrameworkImpl implements Framework {
 
     public void setCurrentDisplayPlugin(DisplayPlugin plugin) {
         this.currentDisplayPlugin = plugin;
-    }
-
-    public boolean hasDataPlugin() {
-        return this.currentDataPlugin != null;
-    }
-
-    public boolean hasDataPluginIndex() {
-        return this.dataPluginIndex != null;
-    }
-
-    public boolean hasDisplayPlugin() {
-        return this.currentDisplayPlugin != null;
     }
 }
