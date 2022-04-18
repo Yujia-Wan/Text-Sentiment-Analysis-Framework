@@ -22,7 +22,7 @@ class App extends Component<Props, FrameworkState> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      instruction: "hello",
+      instruction: "",
       template: this.loadTemplate(),
     };
   }
@@ -32,8 +32,8 @@ class App extends Component<Props, FrameworkState> {
     return Handlebars.compile(src?.innerHTML, {});
   }
 
-  getInstruction(p: any): any {
-    return p["instruction"]
+  getData(p: any): any {
+    return p["data"]
   }
 
 
@@ -41,30 +41,14 @@ class App extends Component<Props, FrameworkState> {
     const href = "submit?" + url.split("?")[1];
     const response = await fetch(href);
     const json1 = await response.json();
-    const instruction = this.getInstruction(json1);
-    // console.log(instruction);
-
-    this.setData(instruction);
-    this.setState({ instruction: "hello" });
+    const data = this.getData(json1);
+    this.setData(data);
+    this.setState({ instruction: "" });
   }
 
-  async setData(instruction: any) {
-    // const data = '{"x":[2,1,2],"type":"pie","labels":["Positive",' + '"'+ instruction  + '"' + ' ,"Negative"]}';
-    const data = '{"x":["a","b","c"],"type":"bar","y":[0.8,0.9,0.1]}';
-    const jsontest = JSON.parse(data)
-    console.log(jsontest)
-    console.log("23232232")
-    
-    
-    // const data2 =    instruction ;
-    console.log("--------compare")
-    // console.log(data2);
-    json = instruction;
-    console.log(json)
-   
+  async setData(data: any) {
+    json = data;
   }
-  
-
 
   async switch() {
     if (
@@ -90,7 +74,7 @@ class App extends Component<Props, FrameworkState> {
         data={[
           json,
         ]}
-        layout={ {width: 500, height: 400} }
+        layout={ {width: 800, height: 500} }
       />
       </div>
     )
