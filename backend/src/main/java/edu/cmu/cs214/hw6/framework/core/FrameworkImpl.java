@@ -65,7 +65,7 @@ public class FrameworkImpl implements Framework {
             // Change the file path to the json file you generated.
             CredentialsProvider credentialsProvider = FixedCredentialsProvider
                     .create(ServiceAccountCredentials.fromStream(
-                            new FileInputStream("/Users/yujiawang/key/sentiment-analysis-347302-56034cc1688f.json")));
+                            new FileInputStream("src/main/resources/sentiment-analysis-347302-56034cc1688f.json")));
 
             LanguageServiceSettings languageServiceSettings = LanguageServiceSettings.newBuilder()
                     .setCredentialsProvider(credentialsProvider).build();

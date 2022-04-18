@@ -57,10 +57,8 @@ public class App extends NanoHTTPD {
             return null;
         }
 
-        DataState frameworkState = DataState.forState(framework);
-        String test = frameworkState.toString();
-        System.out.println(test);
-        return newFixedLengthResponse(test);
+        DataState dataState = DataState.forData(framework);
+        return newFixedLengthResponse(dataState.toString());
     }
 
     /**

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sentiment-analysis-347302",
+  "private_key_id": "56034cc1688fb7e97959de0d9343e95c69249109",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC4eIqcG+y8KVwu\ncsOnehWcV6046G1qH2cM+basUPXDos5JOWl1el7vMsEtzhgoTwPk4RFIbtXQZ+T1\n1q0txG3hua4+GPA619pW2rO+yETaSnDERMB+nWRTFrxnWHlFXfUBmWLEV+xnnxFu\ngCrm+Dvx3JcTfVh+fGG4wYLzVpNh+8H8LVVW6uy1FKbxGa+DUVMQXyKNGtoJREVE\nJKXDFgI0ZLBjs/u98K2avTxd4td/7M6Y8p8yqJzjTTANLkkfmzhm+cUHkGOxvsWM\nvXT4oeqA4df2inQJc8JV/MKf8wYDHurYAEWKC1Ax/K57qYJZGgOWaaJ+UTco7srG\nCgTIkbqFAgMBAAECggEAEdOK6C67UAGaiAiMx2SWWF87/O8FEnIfa2hpko8Do5iv\ni5xHMymUqVPZHtvhh2pUq4EObQFSReChsRoXmSp4HeNA0dJndfWXArlWu7MvEtM1\nFi+4qbj8UW/ghrIiN1BZlVfPwhPnDf/CrPrTaoeG2hwMOL9uVlF0a2i+hqpmoAYM\nnAak3svFli/XKLPXojTy1zkf57Xvz1T/hYHCDCb3IbAOr3SzngDSAmChrgFVHy+r\noKbT7n8PVwk5h/hgSYaIRbsjmMluz/WycF9l10nAkTaY2Q//Muxay8TX8vE7TRwU\n0Woyc8Q1YcBulQapiwz8iBNQhPCkF76f0DOdkfra/wKBgQDniAo+q2Ewxmsll/C2\n9BuRLMi0bVz4RtxUu1L8AC20uF9N2pcNey4atrSuc9c2efHhtNgwpyA/TeLsMEGS\npYQOr7I4l3ZMST8WSZmlITJWXOPiHhpuwTv6RWlt93STKfv1tH6e1Hgw++qT0djO\n8PI51SkUyIJeO7rTTHhYCyLlTwKBgQDL902mhy+hl5pCRkojHXxcAvhVhuzyI8OC\nInxgg2yJ9NyvWb4r7FVW2WPU+IXVWVo6X7q3Mosx6sptNPl5zPFiGBnMNqkwPsTw\nQ9Oxf0qqaGgUUvMnI4vPaqTRY6eOCCASAA/4KUv1o4A78+D+rzdfzld4FK+KA4VM\n5ozJQrpV6wKBgQDdmqjrmM8ahx9wyP+9rOFhz3J+txpADFrAwtbHmkgk7D9T3f+s\nCJV1PiCrxPZdDtTDynsN/jhwPtUOaZWpjcBa6jFz1wyEMasvYtyrX521aY04FMYJ\n8eu9PIiPl0S9wnaFku+KiCROBiBcwYJ5d8bwMaTzXoLhPNwxd8TLyETrIwKBgHOT\nXtzOHZ9jWHXVfo0HWECLLkzId9t9iHtlLzVBQ2+o4KQ8JhadhH4CER/M84lBaG9L\nb3H/ogBXGv1m1za9esoq/fNJxfUgnFfJF1us1ZJaNx/NIRs8eSy/MUW1QmypDgMl\nJedo/zHhw/g06Xlnr+kJ82aH0jBSbmZ0/bHNreihAoGBAONr+1VY5JyAhr2mhAsx\nz8wW4pmDLyy+Cby7oBV7ennFP5JGbRuG38CiPgNaKRXA3NST45dIXsRtqKr0WdlK\nBW/OXdk4FmYVwyEWTyKxC72igdmIdYX618SCIjeIXIKZkmToVTD6O4j//BslncpC\nibMO/fkPyVpmt4V+NIScOiw6\n-----END PRIVATE KEY-----\n",
+  "client_email": "yujia-wang@sentiment-analysis-347302.iam.gserviceaccount.com",
+  "client_id": "107945895991430181311",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/yujia-wang%40sentiment-analysis-347302.iam.gserviceaccount.com"
+}
