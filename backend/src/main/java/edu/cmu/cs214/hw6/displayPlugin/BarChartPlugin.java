@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class BarChartPlugin implements DisplayPlugin {
-    private static final String DISPLAY_PLUGIN_NAME = "bar chart";
+    private static final String DISPLAY_PLUGIN_NAME = "Bar Chart";
     private Framework framework;
 
     @Override

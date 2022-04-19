@@ -19,7 +19,7 @@ import java.util.List;
  * Some code from https://developers.google.com/youtube/v3/docs/commentThreads/list
  */
 public class YouTubePlugin implements DataPlugin {
-    private static final String DATA_PLUGIN_NAME = "youtube";
+    private static final String DATA_PLUGIN_NAME = "YouTube";
     private static final String APPLICATION_NAME = "YouTube Data Plugin";
     private static final String DEVELOPER_KEY = "AIzaSyBbI8osWXhhCKTsz4JPyRksWGraPj5LMMI";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();

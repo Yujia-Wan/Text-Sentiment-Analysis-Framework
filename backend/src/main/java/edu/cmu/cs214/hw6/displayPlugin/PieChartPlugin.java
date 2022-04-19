@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PieChartPlugin implements DisplayPlugin {
-    private static final String DISPLAY_PLUGIN_NAME = "pie chart";
+    private static final String DISPLAY_PLUGIN_NAME = "Pie Chart";
     private Framework framework;
 
     @Override

@@ -37,7 +37,14 @@ There is an error with Handlebars working with Webpack. A simple fix for this er
 - Select display chart. Now we support Bar Chart/Pie Chart.
 
 ## Adding Data Plugin
+We use a String search index to retrieve texts (like a username for Twitter, a video url for YouTube). The retrieved data will be stored in a list of Data objects. Refer to documentation of DataPlugin interface for more details.
+
 To register your plugin with the framework, add the fully-qualified class name of your plugin to the edu.cmu.cs214.hw6.framework.core.DataPlugin file in the src/main/resources/META-INF/services/ directory.
 
 ## Adding Display Plugin
+After performing sentiment analysis, the list of Data will be aggregated and calculated to achieve visualized data. The result data should be formatted as an JSONObject which will be sent to frontend and embedded in the web-based GUI. Refer to documentation of DisplayPlugin interface for more details.
+
 To register your plugin with the framework, add the fully-qualified class name of your plugin to the edu.cmu.cs214.hw6.framework.core.DisplayPlugin file in the src/main/resources/META-INF/services/ directory.
+
+## Data Processing
+we use [Google's Natural Language API](https://cloud.google.com/natural-language/docs/analyzing-sentiment) to perform sentiment analysis (how positive, negative, or neutral the tone of some text is) on different texts.

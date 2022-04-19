@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TwitterPlugin implements DataPlugin {
-    private static final String DATA_PLUGIN_NAME = "twitter";
+    private static final String DATA_PLUGIN_NAME = "Twitter";
     private static final String BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAALyTbQEAAAAAHy0tBRfnqAUokF%2Bj7%2FbsdJn2xmM%" +
             "3DJPJJyuVBjfCtlNgmZ7jQDSnNtZ8hC6XOR694l5VIiXPyCqUdrN";
     private Framework framework;

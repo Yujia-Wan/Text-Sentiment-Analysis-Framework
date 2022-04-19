@@ -17,10 +17,13 @@ public interface DataPlugin {
     String getDataPluginName();
 
     /**
-     * Retrieves texts and time from given data source.
+     * Retrieves texts and time from given data source. Records text fragment and corresponding time in a list of
+     * Data objects. The score field will be set to 0 as a default value.
      *
-     * @param index Index used for search (username for Twitter, video url for YouTube).
-     * @return A list of data.
+     * @param index Index used for search. Input username for Twitter (like "CarnegieMellon"). Input part of video
+     *              url for YouTube (For example, if url is https://www.youtube.com/watch?v=Hp_Eg8NMfT0, you should
+     *              input "Hp_Eg8NMfT0").
+     * @return A list of data with text and time has been set (Refer to Data.java for more details).
      */
     List<Data> getRetrievedData(String index);
 
