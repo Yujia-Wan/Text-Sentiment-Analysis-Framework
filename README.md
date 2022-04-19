@@ -47,4 +47,4 @@ After performing sentiment analysis, the list of Data will be aggregated and cal
 To register your plugin with the framework, add the fully-qualified class name of your plugin to the edu.cmu.cs214.hw6.framework.core.DisplayPlugin file in the src/main/resources/META-INF/services/ directory.
 
 ## Data Processing
-we use [Google's Natural Language API](https://cloud.google.com/natural-language/docs/analyzing-sentiment) to perform sentiment analysis (how positive, negative, or neutral the tone of some text is) on different texts.
+We use [Google's Natural Language API](https://cloud.google.com/natural-language/docs/analyzing-sentiment) to perform sentiment analysis (how positive, negative, or neutral the tone of some text is) on different texts.

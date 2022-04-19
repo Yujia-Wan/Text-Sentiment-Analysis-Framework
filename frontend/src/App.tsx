@@ -4,9 +4,8 @@ import { Component } from 'react'
 import Plot from 'react-plotly.js'
 import './App.css'
 
-
 var oldHref = "http://localhost:3000"
-
+var data: Data
 
 interface FrameworkState {
   instruction: String;
@@ -15,8 +14,6 @@ interface FrameworkState {
 
 interface Props {
 }
-
-let json: Data
 
 class App extends Component<Props, FrameworkState> {
   constructor(props: Props) {
@@ -36,18 +33,16 @@ class App extends Component<Props, FrameworkState> {
     return p["data"]
   }
 
+  async setData(d: any) {
+    data = d;
+  }
 
   async submit(url: String) {
     const href = "submit?" + url.split("?")[1];
     const response = await fetch(href);
-    const json1 = await response.json();
-    const data = this.getData(json1);
-    this.setData(data);
+    const json = await response.json();
+    this.setData(this.getData(json));
     this.setState({ instruction: "" });
-  }
-
-  async setData(data: any) {
-    json = data;
   }
 
   async switch() {
@@ -62,7 +57,6 @@ class App extends Component<Props, FrameworkState> {
 
   render() {
     this.switch()
-  
     return (
       <div className="App">
         <div
@@ -71,11 +65,11 @@ class App extends Component<Props, FrameworkState> {
           }}
         />
         <Plot
-        data={[
-          json,
-        ]}
-        layout={ {width: 800, height: 500} }
-      />
+          data={[
+            data,
+          ]}
+          layout={{width: 800, height: 500}}
+        />
       </div>
     )
   };

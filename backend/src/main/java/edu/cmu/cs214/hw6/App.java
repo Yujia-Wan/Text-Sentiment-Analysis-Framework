@@ -48,13 +48,15 @@ public class App extends NanoHTTPD {
     public  Response serve(IHTTPSession session) {
         String uri = session.getUri();
         Map<String, String> params = session.getParms();
-        if (params.get("dataplugin") != null && params.get("datapluginindex") != null && params.get("displayplugin") != null) {
-            DataPlugin dataPlugin = dataPlugins.get(Integer.parseInt(params.get("dataplugin")));
-            String dataPluginIndex = params.get("datapluginindex");
-            DisplayPlugin displayPlugin = displayPlugins.get(Integer.parseInt(params.get("displayplugin")));
-            framework.process(dataPlugin, dataPluginIndex, displayPlugin);
-        } else {
-            return null;
+        if (uri.equals("/submit")) {
+            if (params.get("dataplugin") != null && params.get("datapluginindex") != null && params.get("displayplugin") != null) {
+                DataPlugin dataPlugin = dataPlugins.get(Integer.parseInt(params.get("dataplugin")));
+                String dataPluginIndex = params.get("datapluginindex");
+                DisplayPlugin displayPlugin = displayPlugins.get(Integer.parseInt(params.get("displayplugin")));
+                framework.process(dataPlugin, dataPluginIndex, displayPlugin);
+            } else {
+                return null;
+            }
         }
 
         DataState dataState = DataState.forData(framework);
