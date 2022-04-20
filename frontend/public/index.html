@@ -5,22 +5,25 @@
     <script src="https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
   </head>
   <body>
-    <div id="frameworkname">Text Sentiment Analysis</div>
-    <br>
     <div id="root"></div>
     <div id="handlebars">
+      <div id="frameworkname">Text Sentiment Analysis</div>
       <form action="submit">
-        Choose data plugin: 
+        Choose data source:
         <select name="dataplugin">
-          <option value="0">twitter</option>
-          <option value="1">youtube</option>
-        </select><br>
-        Search Index: <input type="text" required="required" name="datapluginindex"><br>
-        Choose display plugin: 
+          <option value="0">Twitter</option>
+          <option value="1">YouTube</option>
+        </select>
+        <br>
+        Search index:
+        <input type="text" required="required" name="datapluginindex">
+        <br>
+        Choose display graph:
         <select name="displayplugin">
-          <option value="0">bar</option>
-          <option value="1">pie</option>
-        </select><br>
+          <option value="0">Bar Chart</option>
+          <option value="1">Pie Chart</option>
+        </select>
+        <br>
         <input type="submit" value="Submit">
       </form>
     </div>

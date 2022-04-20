@@ -68,7 +68,7 @@ class App extends Component<Props, FrameworkState> {
           data={[
             data,
           ]}
-          layout={{width: 800, height: 500}}
+          layout={{width: 800, height: 600}}
         />
       </div>
     )
