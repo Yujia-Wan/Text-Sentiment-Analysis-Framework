@@ -35,6 +35,7 @@ There is an error with Handlebars working with Webpack. A simple fix for this er
 - Select data source. Now we support Twitter/YouTube.
 - Input search index. For Twitter, input Twitter username (like "CarnegieMellon"). For YouTube, input video url (if url is https://www.youtube.com/watch?v=Hp_Eg8NMfT0, you should input "Hp_Eg8NMfT0").
 - Select display chart. Now we support Bar Chart/Pie Chart.
+- The Natural Language API is slow, expecting 10-20s for a result graph to display.
 
 ## Adding Data Plugin
 We use a String search index to retrieve texts (like a username for Twitter, a video url for YouTube). The retrieved data will be stored in a list of Data objects. Refer to documentation of DataPlugin interface for more details.

@@ -31,5 +31,5 @@
 - Pie chart:
   - Yujia Wang
 
-- Heat map:
+- Bar chart:
   - Junyi Lu

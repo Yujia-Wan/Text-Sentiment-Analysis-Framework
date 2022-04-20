@@ -19,7 +19,6 @@ public class YouTubePluginTest {
 
     @Test
     public void testGetRetrievedData() {
-//        System.out.println(list);
         List<Data> list = youTubePlugin.getRetrievedData("E-T1gEeUqwA");
         System.out.println(list);
         assertTrue(list.size() > 0);

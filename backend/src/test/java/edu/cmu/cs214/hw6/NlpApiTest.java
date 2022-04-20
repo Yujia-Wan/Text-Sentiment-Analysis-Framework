@@ -1,48 +1,34 @@
 package edu.cmu.cs214.hw6;
 
+import edu.cmu.cs214.hw6.dataPlugin.Data;
+import edu.cmu.cs214.hw6.framework.core.Framework;
+import edu.cmu.cs214.hw6.framework.core.FrameworkImpl;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NlpApiTest {
+    private Framework framework;
 
     @Before
     public void setUp() {
-
+        framework = new FrameworkImpl();
     }
 
     @Test
     public void testAnalyzeSentimentText() {
-
-
+        String[] texts = {"I love this!", "I hate this!"};
+        List<Data> data = new ArrayList<>();
+        for (String text: texts) {
+            Data d = new Data(text, null, 0);
+            data.add(d);
+        }
+        data = framework.analyzeTextSentiment(data);
+        assertTrue(data.get(0).getScore() > 0);
+        assertTrue(data.get(1).getScore() < 0);
     }
-
-
-    // Google's Natural Language API test
-//    public static void main(String... args) throws IOException {
-//        // Authentication
-//        CredentialsProvider credentialsProvider = FixedCredentialsProvider
-//                .create(ServiceAccountCredentials.fromStream(new FileInputStream("/Users/yujiawang/key/sentiment-analysis-347302-56034cc1688f.json")));
-//
-//        LanguageServiceSettings languageServiceSettings = LanguageServiceSettings.newBuilder()
-//                .setCredentialsProvider(credentialsProvider).build();
-//
-//        // Instantiates a client
-//        LanguageServiceClient languageServiceClient = LanguageServiceClient.create(languageServiceSettings);
-//
-//        // The text to analyze
-//        String[] texts = {"I love this!", "I hate this!"};
-//        for (String text : texts) {
-//            Document doc = Document.newBuilder().setContent(text).setType(Type.PLAIN_TEXT).build();
-//            // Detects the sentiment of the text
-//            Sentiment sentiment = languageServiceClient.analyzeSentiment(doc).getDocumentSentiment();
-//
-//            System.out.printf("Text: \"%s\"%n", text);
-//            System.out.printf(
-//                    "Sentiment: score = %s, magnitude = %s%n",
-//                    sentiment.getScore(), sentiment.getMagnitude());
-//        }
-//    }
 }

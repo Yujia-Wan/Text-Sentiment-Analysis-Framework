@@ -13,6 +13,7 @@ import java.util.Map;
 
 public class BarChartPlugin implements DisplayPlugin {
     private static final String DISPLAY_PLUGIN_NAME = "Bar Chart";
+    private static final int NUMBER = 10;
     private Framework framework;
 
     @Override
@@ -29,6 +30,7 @@ public class BarChartPlugin implements DisplayPlugin {
         Map<String, Integer> number = new HashMap<>();
         Map<String, Float> score = new HashMap<>();
         for (Data d : data) {
+            d.setTime(d.getTime().substring(0, NUMBER));
             number.put(d.getTime(), number.getOrDefault(d.getTime(), 0) + 1);
             score.put(d.getTime(), score.getOrDefault(d.getTime(), (float)0.0) + d.getScore());
         }
