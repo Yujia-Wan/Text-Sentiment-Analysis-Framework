@@ -67,12 +67,14 @@ public class YouTubePlugin implements DataPlugin {
                 dataSource.add(data);
             }
         } catch (GeneralSecurityException | IOException exception) {
-            System.out.println("errorMessage : Error!");
-            return null;
+            System.out.println("Could not find video with this url: " + videoId);
+            this.framework.setInstruction("Could not find video with this url: " + videoId);
         }
-        if (dataSource.size() == 0){
-            System.out.println("errorMessage : No comment in this video.");
-            return null;
+        if (dataSource.isEmpty()){
+            System.out.println("No comment found in this video.");
+            if (this.framework.getInstruction().equals("")) {
+                this.framework.setInstruction("No comment found in this video.");
+            }
         }
         return dataSource;
     }

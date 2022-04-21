@@ -21,7 +21,8 @@ public class PieChartPlugin implements DisplayPlugin {
     @Override
     public JSONObject getVisualizedData(List<Data> data) {
         if (data.isEmpty()) {
-            System.err.println("No data to visualize.");
+            System.err.println("No data to plot!");
+            return null;
         }
 
         Integer positiveCount = 0;

@@ -19,7 +19,7 @@ class App extends Component<Props, FrameworkState> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      instruction: "",
+      instruction: "Customize your config and start sentiment analysis!",
       template: this.loadTemplate(),
     };
   }
@@ -29,8 +29,15 @@ class App extends Component<Props, FrameworkState> {
     return Handlebars.compile(src?.innerHTML, {});
   }
 
-  getData(p: any): any {
-    return p["data"]
+  getInstruction(p: any): String {
+    if (p["instruction"] === "") {
+      return "Customize your config and start sentiment analysis!";
+    }
+    return p["instruction"];
+  }
+
+  getData(p: any): String {
+    return p["data"];
   }
 
   async setData(d: any) {
@@ -41,8 +48,10 @@ class App extends Component<Props, FrameworkState> {
     const href = "submit?" + url.split("?")[1];
     const response = await fetch(href);
     const json = await response.json();
+
+    const instr = this.getInstruction(json);
     this.setData(this.getData(json));
-    this.setState({ instruction: "" });
+    this.setState({ instruction: instr });
   }
 
   async switch() {

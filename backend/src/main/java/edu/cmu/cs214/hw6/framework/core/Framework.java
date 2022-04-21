@@ -34,4 +34,18 @@ public interface Framework {
      * @param displayPlugin Display plugin.
      */
     void process(DataPlugin dataPlugin, String dataPluginIndex, DisplayPlugin displayPlugin);
+
+    /**
+     * Retrieves the instruction of this framework.
+     *
+     * @return Instruction message.
+     */
+    String getInstruction();
+
+    /**
+     * Records instruction of this framework.
+     *
+     * @param instruction Instruction and error messages.
+     */
+    void setInstruction(String instruction);
 }

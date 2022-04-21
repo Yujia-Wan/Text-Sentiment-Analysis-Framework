@@ -38,7 +38,7 @@ public class TwitterPlugin implements DataPlugin {
      * @throws IOException I/O failure.
      * @throws URISyntaxException Invalid URI.
      */
-    private static String getUser(String username, String bearerToken) throws IOException, URISyntaxException {
+    private String getUser(String username, String bearerToken) throws IOException, URISyntaxException {
         String userId = null;
 
         HttpClient httpClient = HttpClients.custom()
@@ -67,7 +67,8 @@ public class TwitterPlugin implements DataPlugin {
                 JSONObject token = tokenList.getJSONObject(0);
                 userId = token.getString("id");
             } catch (JSONException e) {
-                System.err.println("Could not find user with usernames: " + username);
+                System.err.println("Could not find user with username: " + username);
+                this.framework.setInstruction("Could not find user with username: " + username);
             }
         }
         return userId;
@@ -82,7 +83,7 @@ public class TwitterPlugin implements DataPlugin {
      * @throws IOException I/O failure.
      * @throws URISyntaxException Invalid URI.
      */
-    private static List<Data> getTweets(String userId, String bearerToken) throws IOException, URISyntaxException {
+    private List<Data> getTweets(String userId, String bearerToken) throws IOException, URISyntaxException {
         List<Data> result = new ArrayList<>();
 
         HttpClient httpClient = HttpClients.custom()
@@ -105,13 +106,20 @@ public class TwitterPlugin implements DataPlugin {
         if (null != entity) {
             String tweetResponse = EntityUtils.toString(entity, "UTF-8");
             JSONObject json = new JSONObject(tweetResponse);
-            JSONArray tokenList = json.getJSONArray("data");
-            for (int i = 0; i < tokenList.length(); i++) {
-                JSONObject token = tokenList.getJSONObject(i);
-                String tweet = token.getString("text");
-                String time = token.getString("created_at");
-                Data data = new Data(tweet, time, 0);
-                result.add(data);
+            try {
+                JSONArray tokenList = json.getJSONArray("data");
+                for (int i = 0; i < tokenList.length(); i++) {
+                    JSONObject token = tokenList.getJSONObject(i);
+                    String tweet = token.getString("text");
+                    String time = token.getString("created_at");
+                    Data data = new Data(tweet, time, 0);
+                    result.add(data);
+                }
+            } catch (JSONException e) {
+                System.err.println("This user hasn't post any tweet yet.");
+                if (this.framework.getInstruction().equals("")) {
+                    this.framework.setInstruction("This user hasn't post any tweet yet.");
+                }
             }
         }
         return result;
@@ -128,9 +136,6 @@ public class TwitterPlugin implements DataPlugin {
         try {
             String userId = getUser(username, BEARER_TOKEN);
             tweets = getTweets(userId, BEARER_TOKEN);
-            if (tweets.isEmpty()) {
-                System.err.println("This user hasn't post any tweet yet.");
-            }
         } catch (IOException | URISyntaxException e) {
             System.err.println("Fail to get tweets from given username.");
         }
@@ -141,18 +146,4 @@ public class TwitterPlugin implements DataPlugin {
     public void onRegister(Framework framework) {
         this.framework = framework;
     }
-
-    // To set your environment variables in your terminal run the following line:
-    // export 'BEARER_TOKEN'='<your_bearer_token>'
-//    public static void main(String args[]) throws IOException, URISyntaxException {
-//        final String bearerToken = System.getenv("BEARER_TOKEN");
-//        System.out.println(bearerToken);
-//        if (null != bearerToken) {
-//            String userId = getUser("CarnegieMellon", BEARER_TOKEN);
-//            List<Data> response = getTweets(userId, bearerToken);
-//            System.out.println(response);
-//        } else {
-//            System.out.println("There was a problem getting your bearer token. Please make sure you set the BEARER_TOKEN environment variable");
-//        }
-//    }
 }

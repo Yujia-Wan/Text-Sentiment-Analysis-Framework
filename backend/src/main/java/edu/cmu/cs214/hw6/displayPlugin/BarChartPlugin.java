@@ -25,8 +25,10 @@ public class BarChartPlugin implements DisplayPlugin {
     public JSONObject getVisualizedData(List<Data> data) {
         JSONObject json = new JSONObject();
         if (data.isEmpty()) {
-            json.put("errorMessage", "No data to plot!");
+            System.err.println("No data to plot!");
+            return null;
         }
+        
         Map<String, Integer> number = new HashMap<>();
         Map<String, Float> score = new HashMap<>();
         for (Data d : data) {

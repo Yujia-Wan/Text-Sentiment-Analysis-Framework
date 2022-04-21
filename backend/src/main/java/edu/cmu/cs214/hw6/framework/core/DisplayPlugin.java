@@ -14,7 +14,7 @@ public interface DisplayPlugin {
     /**
      * Gets the name of the plug-in visualization.
      *
-     * @return Name of diaplay plugin.
+     * @return Name of display plugin.
      */
     String getDisplayPluginName();
 

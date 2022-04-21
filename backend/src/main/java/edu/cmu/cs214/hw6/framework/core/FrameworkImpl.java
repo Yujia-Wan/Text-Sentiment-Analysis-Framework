@@ -10,7 +10,6 @@ import com.google.cloud.language.v1.Document.Type;
 import com.google.cloud.language.v1.LanguageServiceSettings;
 import com.google.cloud.language.v1.Sentiment;
 import edu.cmu.cs214.hw6.dataPlugin.Data;
-import org.json.JSONObject;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -20,16 +19,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class FrameworkImpl implements Framework {
+    private List<DataPlugin> registeredDataPlugins;
+    private List<DisplayPlugin> registeredDisplayPlugins;
     private DataPlugin currentDataPlugin;
     private String dataPluginIndex;
     private DisplayPlugin currentDisplayPlugin;
-    private List<DataPlugin> registeredDataPlugins;
-    private List<DisplayPlugin> registeredDisplayPlugins;
-    private JSONObject result;
+    private String instruction;
+    private String result;
 
     public FrameworkImpl() {
         this.registeredDataPlugins = new ArrayList<>();
         this.registeredDisplayPlugins = new ArrayList<>();
+        this.currentDataPlugin = null;
+        this.dataPluginIndex = null;
+        this.currentDisplayPlugin = null;
+        this.instruction = "";
+        this.result = "";
     }
 
     /**
@@ -105,8 +110,37 @@ public class FrameworkImpl implements Framework {
         setCurrentDisplayPlugin(displayPlugin);
 
         List<Data> data = this.currentDataPlugin.getRetrievedData(dataPluginIndex);
+        if (data.isEmpty()) {
+            return;
+        }
         data = analyzeTextSentiment(data);
-        this.result = this.currentDisplayPlugin.getVisualizedData(data);
+        this.result = this.currentDisplayPlugin.getVisualizedData(data).toString();
+    }
+
+    @Override
+    public String getInstruction() {
+        return this.instruction;
+    }
+
+    @Override
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
+    }
+
+    public void setCurrentDataPlugin(DataPlugin plugin) {
+        this.currentDataPlugin = plugin;
+    }
+
+    public void setDataPluginIndex(String index) {
+        this.dataPluginIndex = index;
+    }
+
+    public void setCurrentDisplayPlugin(DisplayPlugin plugin) {
+        this.currentDisplayPlugin = plugin;
+    }
+
+    public void resetResult(String result) {
+        this.result = result;
     }
 
     public List<String> getRegisteredDataPluginName() {
@@ -130,18 +164,6 @@ public class FrameworkImpl implements Framework {
     }
 
     public String getResult() {
-        return this.result.toString();
-    }
-
-    public void setCurrentDataPlugin(DataPlugin plugin) {
-        this.currentDataPlugin = plugin;
-    }
-
-    public void setDataPluginIndex(String index) {
-        this.dataPluginIndex = index;
-    }
-
-    public void setCurrentDisplayPlugin(DisplayPlugin plugin) {
-        this.currentDisplayPlugin = plugin;
+        return this.result;
     }
 }
