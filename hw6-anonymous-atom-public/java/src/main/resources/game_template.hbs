@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Sentiment Analysis Framework</title>
+        <style>
+            html, body {
+                height: 100%;
+                padding: 1vw;
+            }
+        </style>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.2.2/echarts.min.js"></script>
+        <script>
+            function clear_search_input() {
+                document.getElementById('search_input').value = '';
+            }
+        </script>
+    </head>
+
+    <body style="background-color: rgba(205, 232, 255, 0.8);">
+        <div>
+            <h2 style="text-align: center;">Text Sentiment Analysis Framework</h2>
+            <h3>Data Plugin</h3>
+            <form action="/data-plugin" id="data_form" method="POST" enctype="multipart/form-data" >
+                <!-- Select data plugin -->
+                <div class="d-flex flex-row">
+                    <select name="data_plugin" id="data_plugin" class="form-select w-25">
+                        <option value="none" selected>Select a data plugin</option> <!-- Select a data plugin -->
+                        {{#each registeredDataPlugins}}
+                            <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                    <p style="margin: 10px; color: red;"><strong>{{dataPluginNotSelected}}</strong></p>
+                </div>
+                <br>
+
+                <div class="mb-3 form-inline">
+                    <label for="search_input" class="form-label">Add one or multiple search queries (our sample plugins support: Youtube video ID, Twitter user ID)</label>
+                    <div class="d-flex flex-row">
+                        <!-- Search -->
+                        <input name="search_input" type="text" id="search_input" class="form-control w-25" style="margin-right: 10px;">
+                        <!-- Add & clear all -->
+                        <button class="btn btn-primary" style="margin: 10px; width: 5vw" type="submit" name="search_button" value="add">Add</button>
+                        <button class="btn btn-primary" style="margin: 10px; width: 5vw;" onclick="clear_search_input()" type="submit" name="search_button" value="clear">Clear All</button>
+                        <p style="color: red; font-size: 15px; width: 28vw; color: rgba(13,64,253,255);">
+                            --- <strong>About "Add" button</strong> --- <br>You can add multiple search queries, but please add one query at a time. Must select a data plugin before you hit "Add". Wait until the wheel in the browser tab stops spinning, or the new ID appears in the list of added IDs, to add another query. <br /> Note it may take some time (even up to 1 minute) to finish adding data because you are dealing with a large amount of data at a time, for example extracting 100 recent tweets from a assigned user.
+                        </p>
+                        <p style="margin-left: 8px; color: red; font-size: 15px; width: 35vw; color: rgba(13,64,253,255);">
+                            --- <strong>IDs for your convenience</strong> --- <br><strong>Twitter user ID:</strong> Barack Obama: 50393960, Jeff Bezos: 15506669, Chris Pratt: 241382835, CNN Breaking News: 428333, Fox News: 1367531.<br><strong>Youtube video ID:</strong>Will Smith apologizes: nSQBnF3uR50, Italians try American food: pHJhB4pmPCg, ranking of states in the US: tTQY0HUSy5o, Elon Musk tries to buy Twitter: JhAe2y81GDE
+                        </p>
+                    </div>
+                    <div class="form-text">Added IDs: {{addedQueries}}</div>
+                </div>
+            </form>
+        </div>
+        <br>
+
+        <div>
+            <h3>Visualization Plugin</h3>
+            <form action="/vis-plugin" id="vis_form" method="POST">
+                <!-- Select visualization plugin -->
+                <div class="d-flex flex-row">
+                    <select name="vis_plugin" id="vis_plugin" class="form-select w-25">
+                        <option value="none" selected>Select a visualization plugin</option>
+                        {{#each registeredVisPlugins}}
+                            <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                    <p style="margin: 10px; color: red;"><strong>{{visPluginNotSelected}}</strong></p>
+                </div>
+            </form>
+        </div>
+        <br>
+        <br>
+
+        <div>
+            <h3>Last Step</h3>
+            <div class="d-flex flex-row">
+                <div class="d-grid gap-2 w-25">
+                    <!-- visualize -->
+                   <button class="btn btn-primary" type="submit" form="vis_form">Visualize</button>
+                </div>
+                <p style="margin-left: 20px; color: rgba(13,64,253,255);">Read about <strong>salience, score, and magnitude</strong> at:  https://cloud.google.com/natural-language/docs/basics</p>
+             </div>
+        </div>
+
+        <!-- chart -->
+        <div id="chart" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+            var myChart = echarts.init(document.getElementById('chart'));
+            var option = JSON.parse("{{json}}".replace(/&quot;/g, '"'));
+            myChart.setOption(option);
+        </script>
+    </body>
+
+    <!-- import the the tic.ts file generated by browserify -->
+    <script src="tic.js"></script>
+</html>

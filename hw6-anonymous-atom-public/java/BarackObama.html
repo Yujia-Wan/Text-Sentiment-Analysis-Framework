@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ECharts Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.2.2/echarts.min.js"
+        integrity="sha512-ivdGNkeO+FTZH5ZoVC4gS4ovGSiWc+6v60/hvHkccaMN2BXchfKdvEZtviy5L4xSpF8NPsfS0EVNSGf+EsUdxA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        #title-container {
+            width: 600pxpx;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #download-btn {
+            border-radius: 6px;
+            background-color: aliceblue;
+            border: 1px solid black;
+        }
+
+        #display-container {
+            width: 600px;
+            height: 600px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="title-container">
+            <h1 class="display">ECharts Java</h1>
+            <button id="download-btn" onclick="downloadImage()">Download Image</button>
+        </div>
+        <div id="display-container">
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        function downloadImage() {
+            let canvas = document.querySelector("canvas");
+            let image = canvas.toDataURL("image/png").replace("image/png",
+                "image/octet-stream");
+            let fakeLink = document.createElement("a");
+            if (typeof fakeLink.download === "string") {
+                document.body.appendChild(fakeLink);
+                fakeLink.download = "echart.png";
+                fakeLink.href = image;
+                fakeLink.click();
+                document.body.removeChild(fakeLink);
+            } else {
+                location.replace(image);
+            }
+        }
+        let chart = echarts.init(document.getElementById("display-container")); 
+        let option = {"xAxis":[{"type":"category","data":["Madeleine Albright","health systems","Kakenya Ntaiya","RT @devisridhar","Bed nets","bake","dad","changemakers","Mamello Makhele","helpers","Paul","Bono","Brooke Brown","Paul","Desmond Tutu"]}],"yAxis":[{"type":"value","name":"salience & score"},{"type":"value","name":"magnitude"}],"tooltip":{"trigger":"item"},"legend":{},"series":[{"type":"bar","name":"salience","data":[0.51157206,0.5586897,0.61500263,0.53694624,0.8389361,0.54617506,0.50003654,0.81204194,0.677821,0.6209332,0.6427288,0.5491895,0.7815203,0.78731334,0.70858335]},{"type":"bar","name":"score","data":[0.2,0.5,0.1,-0.3,0.3,0.9,0.4,0.9,0.2,0.2,0.2,0.7,0.6,0.5,0.6]},{"type":"line","name":"magnitude","data":[0.5,0.5,0.6,0.7,0.9,0.9,0.9,0.9,0.9,1.0,1.0,1.5,2.5,3.8,5.4],"yAxisIndex":1}]}
+        chart.setOption(option);
+    </script>
+</body>
+
+</html>
