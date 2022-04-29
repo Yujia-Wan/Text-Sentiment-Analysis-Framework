@@ -2,3 +2,4 @@
 # Provide fully qualified class names here ( edu.cmu.cs.cs214.hw6.framework.plugin.data.XXX ), with one plugin per line.
 edu.cmu.cs.cs214.hw6.framework.plugin.data.TwitterDataPlugin
 edu.cmu.cs.cs214.hw6.framework.plugin.data.YoutubeDataPlugin
+edu.cmu.cs.cs214.hw6.framework.plugin.data.NewYorkTimesDataPlugin

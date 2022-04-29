@@ -14,7 +14,7 @@ import java.util.List;
 
 public class YoutubeDataPlugin implements DataPlugin {
     // Place your YouTube API key here
-    private static final String DEVELOPER_KEY = "YOUR_ACTUAL_KEY";
+    private static final String DEVELOPER_KEY = "AIzaSyBbI8osWXhhCKTsz4JPyRksWGraPj5LMMI";
     private static final String APPLICATION_NAME = "Youtube Data Plugin";
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
     private YouTube service;
