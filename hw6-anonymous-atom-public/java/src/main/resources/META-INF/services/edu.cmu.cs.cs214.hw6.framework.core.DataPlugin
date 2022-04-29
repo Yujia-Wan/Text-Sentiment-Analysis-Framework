@@ -3,3 +3,4 @@
 edu.cmu.cs.cs214.hw6.framework.plugin.data.TwitterDataPlugin
 edu.cmu.cs.cs214.hw6.framework.plugin.data.YoutubeDataPlugin
 edu.cmu.cs.cs214.hw6.framework.plugin.data.NewYorkTimesDataPlugin
+edu.cmu.cs.cs214.hw6.framework.plugin.data.NewsDataPlugin
