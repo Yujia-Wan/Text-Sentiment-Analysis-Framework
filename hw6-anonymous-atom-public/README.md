@@ -78,6 +78,8 @@
     >   - Barack Obama: 50393960, Jeff Bezos: 15506669, Chris Pratt: 241382835, CNN Breaking News: 428333, Fox News: 1367531
 > - Youtube video IDs for your convenience (you can find the video ID after "v=" in any Youtube link)
     >   - Will Smith apologizes: nSQBnF3uR50, Italians try American food: pHJhB4pmPCg, COVID vaccines: the81FQoAUI, Elon Musk tries to buy Twitter: JhAe2y81GDE
+> - New York Times search keywords for your convenience to look up articles by keyword
+    >   - "election", "smile", "university"
 >
 > #### STEP 4
 > - Select a visualization plugin.  
