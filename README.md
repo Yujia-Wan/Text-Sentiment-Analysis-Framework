@@ -53,6 +53,8 @@ We use [Google's Natural Language API](https://cloud.google.com/natural-language
 ## Milestone C
 We added NewsDataPlugin, NewYorkTimesDataPlugin, and HeatmapVisPlugin for selected team's framework. Please switch to MilestoneC branch in our repository, refer to hw6-anonymous-atom-public/README.md and its source files for more details.
 ### NewsDataPlugin
+#### [News API](https://newsapi.org/docs/get-started)
+Use e-mail address to create an account. Then get your api key. Place it in hw6-anonymous-atom-public directory's framework/plugin/data/NewsDataPlugin.java in line 25.
 
 ### NewYorkTimesDataPlugin
 #### [New York Times API](https://developer.nytimes.com/)
