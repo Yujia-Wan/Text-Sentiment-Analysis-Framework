@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewsDataPlugin implements DataPlugin {
-    private final String apiKey = System.getenv("API_KEY");
+    private final String apiKey = "eef1a9587ac042ab8f0d9da0b3d109b4";
     private String apiResponse;
 
     @Override
