@@ -34,13 +34,13 @@
     >   - Sign up for a developer account at https://developer.twitter.com/en/portal/petition/essential/basic-info
 >   - Create a Twitter App at https://developer.twitter.com/content/developer-twitter/en/docs/basics/developer-portal/guides/apps
 >   - Obtain the API key found in the developer portal following the steps below
-      >     - Login to your Twitter account on developer.twitter.com
+>     - Login to your Twitter account on developer.twitter.com
 >     - Navigate to the Twitter App dashboard at https://developer.twitter.com/content/developer-twitter/en/apps and open the Twitter App for which you would like to generate access tokens
 >     - Navigate to the "keys and tokens" page
 >     - You'll find your Bearer Token on this page
 >     - Add it to your environment variables: BEARER_TOKEN="YOUR_ACTUAL_TOKEN"
 > - <strong>Google Cloud Natural Language API</strong> (https://cloud.google.com/natural-language/docs/setup for more details)
-    >   - Go to the Google Cloud Console at https://support.google.com/cloud/answer/3465889?hl=en&ref_topic=3340599 to set up and manage Natural Language resources
+>   - Go to the Google Cloud Console at https://support.google.com/cloud/answer/3465889?hl=en&ref_topic=3340599 to set up and manage Natural Language resources
 >   - Create a project to use services provided by Google Cloud
 >   - Enable billing, a billing account used to define who pays for a given set of resources is needed
 >   - Enable the Cloud Natural Language API for your project
@@ -49,6 +49,11 @@
 >     - Use the service account key file in your environment
 >   - Install the gcloud CLI following https://cloud.google.com/sdk/docs/install. Different systems install it differently.
 >   - Initialize the gcloud CLI following https://cloud.google.com/sdk/docs/initializing.
+> - <strong>New York Times API</strong> (https://developer.nytimes.com/ for more details)
+>   - Create an account to [get started](https://developer.nytimes.com/get-started)
+>   - Sign in your account on developer.nytimes.com
+>   - Create a new app
+>   - Save your API key and place it in framework/plugin/data/NewYorkTimesDataPlugin.java where it says "fill in your key here"
 > - <strong>You are good to go</strong>
 ---
 

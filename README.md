@@ -49,3 +49,14 @@ To register your plugin with the framework, add the fully-qualified class name o
 
 ## Data Processing
 We use [Google's Natural Language API](https://cloud.google.com/natural-language/docs/analyzing-sentiment) to perform sentiment analysis (how positive, negative, or neutral the tone of some text is) on different texts.
+
+## Milestone C
+We added NewsDataPlugin, NewYorkTimesDataPlugin, and HeatmapVisPlugin for selected team's framework. Please switch to MilestoneC branch in our repository, refer to hw6-anonymous-atom-public/README.md and its source files for more details.
+### NewsDataPlugin
+
+### NewYorkTimesDataPlugin
+#### [New York Times API](https://developer.nytimes.com/)
+Follow the [instructions](https://developer.nytimes.com/get-started) to acquire an API key. Place it in hw6-anonymous-atom-public directory's framework/plugin/data/NewYorkTimesDataPlugin.java where it says "fill in your key here".
+
+### HeatmapVisPlugin
+Visualize the magnitude along with corresponding salience and score.
