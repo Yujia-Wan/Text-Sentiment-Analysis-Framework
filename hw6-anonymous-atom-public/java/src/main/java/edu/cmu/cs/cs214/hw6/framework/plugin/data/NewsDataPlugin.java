@@ -18,7 +18,6 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,13 +42,8 @@ public class NewsDataPlugin implements DataPlugin {
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
-        if (response == null) {
-            apiResponse = null;
-        } else {
-            apiResponse = response;
-        }
+        apiResponse = response;
     }
-
 
     private String getNews(String topic, String apiKey) throws IOException, URISyntaxException {
         String newsResponse = null;
@@ -60,14 +54,13 @@ public class NewsDataPlugin implements DataPlugin {
                 .build();
 
         URIBuilder uriBuilder = new URIBuilder(String.format("https://newsapi.org/v2/everything?q=%s&language=en&apiKey=%s",
-                topic, this.apiKey));
+                topic, apiKey));
         ArrayList<NameValuePair> queryParameters;
         queryParameters = new ArrayList<>();
         queryParameters.add(new BasicNameValuePair("max_results", "20"));
         uriBuilder.addParameters(queryParameters);
 
         HttpGet httpGet = new HttpGet(uriBuilder.build());
-
         HttpResponse response = httpClient.execute(httpGet);
         HttpEntity entity = response.getEntity();
         if (null != entity) {
@@ -75,7 +68,6 @@ public class NewsDataPlugin implements DataPlugin {
         }
         return newsResponse;
     }
-
 
     /*
      * Transfer the response as JSON string into a list of DataNode which can be processed later by our framework

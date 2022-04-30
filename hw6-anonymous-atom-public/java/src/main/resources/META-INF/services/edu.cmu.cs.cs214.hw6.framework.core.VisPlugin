@@ -3,3 +3,4 @@
 # with one plugin per line.
 edu.cmu.cs.cs214.hw6.framework.plugin.visualization.BarVisPlugin
 edu.cmu.cs.cs214.hw6.framework.plugin.visualization.RadarVisPlugin
+edu.cmu.cs.cs214.hw6.framework.plugin.visualization.HeatmapVisPlugin
