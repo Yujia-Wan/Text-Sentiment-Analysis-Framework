@@ -54,8 +54,11 @@
 >   - Sign in your account on developer.nytimes.com
 >   - Create a new app
 >   - Save your API key and place it in framework/plugin/data/NewYorkTimesDataPlugin.java where it says "fill in your key here"
-> - <strong>News API</strong>
-> - <strong>You are good to go</strong>
+> - <strong>News API</strong> (https://newsapi.org/docs/get-started for more details)
+>   - Use your e-mail address to get an account
+>   - Sign in your account and [get the api key](https://newsapi.org/account)
+>   - Save your API key and place it in framework/plugin/data/NewsDataPlugin.java in line 25
+- <strong>You are good to go</strong>
 ---
 
 > <p align="center" style="font-size: 25px; font-weight: bold;"> HOW TO RUN THE PROGRAM & NAVIGATE THE WEBSITE (GUI) </p>
@@ -81,7 +84,8 @@
 >   - Will Smith apologizes: nSQBnF3uR50, Italians try American food: pHJhB4pmPCg, COVID vaccines: the81FQoAUI, Elon Musk tries to buy Twitter: JhAe2y81GDE
 > - New York Times search keywords for your convenience to look up articles by keyword
 >   - "election", "smile", "university"
-> - News reference here
+> - News topic for you convenience
+>   - "carnegie", "cmu"
 >
 > #### STEP 4
 > - Select a visualization plugin.  
