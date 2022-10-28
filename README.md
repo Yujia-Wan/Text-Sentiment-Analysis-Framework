@@ -1,4 +1,4 @@
-# hw6-analytics-framework-youshallpass
+# Text Sentiment Analysis Framework
 
 ## Starting a Framework
 ### Prerequisites
